@@ -70,6 +70,7 @@ def animationtrocool(plat,centre,taille):
         lol(centre, i)
         for p in Point.liste_objet:
             p.efface()
+            del p
         Point.liste_objet = []
         mise_a_jour()
         efface_tout()
