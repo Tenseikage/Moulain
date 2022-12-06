@@ -3,9 +3,9 @@ from point import Point
 
 
 def carre(centre,t):
+    #faire le carré
     rectangle(centre[0]-t, centre[0]-t,centre[1]+t,centre[1]+t, couleur='black', remplissage='', epaisseur=5, tag='plato')
-
-    #creer les points
+    #creer les points sur le carré
     for i in range(-1,2):
         for j in range(-1,2):
             if i != 0 or j != 0:
@@ -34,7 +34,7 @@ def affiche_plateforme2(centre,taille): # a 12
 
 
 def affiche_plateforme3(centre,taille): # petit
-    taille = 3/2 * taille
+    taille *= 3/2
     rectangle(centre[0] - taille*2, centre[0] - taille*2, centre[1] + taille*2, centre[1] + taille*2, couleur='', remplissage='#eee1c6', epaisseur=0,tag='plato')
     for i in range(2):
         carre(centre,taille*(i+1))
@@ -57,9 +57,9 @@ def affiche_plateforme4(centre,taille): #croisé
 
 
 def animationtrocool(plat,centre,taille):
-    if plat == 0:
-        lol = affiche_plateforme1()
-    elif plat == 1:
+    if plat == 1:
+        lol = affiche_plateforme1
+    elif plat == 2:
         lol = affiche_plateforme2
     elif plat == 3:
         lol = affiche_plateforme3
