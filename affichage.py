@@ -46,3 +46,23 @@ def affiche_plateforme3(centre,taille): # petit
 
 def affiche_plateforme4(centre,taille): #croisé
     pass
+
+
+def animationtrocool(plat,centre,taille):
+    if plat == 0:
+        lol = affiche_plateforme1()
+    elif plat == 1:
+        lol = affiche_plateforme2
+    elif plat == 3:
+        lol = affiche_plateforme3
+    else:
+        lol = affiche_plateforme4
+
+    for i in range(taille):
+        lol(centre, i)
+        for p in Point.liste_objet:
+            p.efface()
+        Point.liste_objet = []
+        mise_a_jour()
+        efface_tout()
+    lol(centre, taille)
