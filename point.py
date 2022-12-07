@@ -29,3 +29,11 @@ class Point:
             self.color = 'black'
             self.update()
             return False
+
+def update_points():
+    for position in Point.liste_objet:
+        if position.mouse_over():
+            position.color = 'red'
+        else:
+            position.color = 'black'
+        position.update()
