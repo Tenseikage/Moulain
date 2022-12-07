@@ -79,7 +79,7 @@ def menu():
         tk.mise_a_jour()
         if tev == "ClicGauche": # Regarde si le clique gauche a été apuuyé
             coords_clickx, coords_clicky = tk.abscisse(event), tk.ordonnee(event)
-            if buttonjouer.is_touched():
+            if buttonjouer.is_touched((coords_clickx, coords_clicky)):
             # Regarde si le clique à été effectué sur le bouton jouer
                 buttonjouer.destroy_button()
                 buttonquitter.destroy_button()
