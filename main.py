@@ -13,7 +13,14 @@ def main():
         for position in Point.liste_objet:
             position.mouse_over()
 
+        ev = donne_ev()
+        tev = type_ev(ev)
 
+        if tev == 'Quitte':
+            break
+
+
+    ferme_fenetre()
 
 
 
