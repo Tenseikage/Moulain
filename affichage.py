@@ -41,7 +41,7 @@ def affiche_plateforme2(centre,taille): # a 12
     #lignes
     for i in (0,1,-1):
         for j in (-1,1,0):
-            ligne(centre[0] + 3*i * taille, centre[1] + 3*j * taille, centre[0] + i * taille, centre[1] + j * taille, couleur='black', epaisseur=5, tag='')
+            ligne(centre[0] + 3*i * taille, centre[1] + 3*j * taille, centre[0] + i * taille, centre[1] + j * taille, couleur='black', epaisseur=5, tag='plato')
 
 
 def affiche_plateforme3(centre,taille): # petit
@@ -54,10 +54,10 @@ def affiche_plateforme3(centre,taille): # petit
     for i in range(2):
         carre(centre,taille*(i+1))
     #lignes
-    ligne(centre[0], centre[1] - 2 * taille, centre[0], centre[1] - taille, couleur='black', epaisseur=5, tag='')
-    ligne(centre[0], centre[1] + 2 * taille, centre[0], centre[1] + taille, couleur='black', epaisseur=5, tag='')
-    ligne(centre[0] - 2 * taille, centre[1], centre[0] - taille, centre[1], couleur='black', epaisseur=5, tag='')
-    ligne(centre[0] + 2 * taille, centre[1], centre[0] + taille, centre[1], couleur='black', epaisseur=5, tag='')
+    ligne(centre[0], centre[1] - 2 * taille, centre[0], centre[1] - taille, couleur='black', epaisseur=5, tag='plato')
+    ligne(centre[0], centre[1] + 2 * taille, centre[0], centre[1] + taille, couleur='black', epaisseur=5, tag='plato')
+    ligne(centre[0] - 2 * taille, centre[1], centre[0] - taille, centre[1], couleur='black', epaisseur=5, tag='plato')
+    ligne(centre[0] + 2 * taille, centre[1], centre[0] + taille, centre[1], couleur='black', epaisseur=5, tag='plato')
 
 def affiche_plateforme4(centre,taille): #croisé
     '''
@@ -92,5 +92,5 @@ def animationtrocool(plat,centre,taille):
             del p
         Point.liste_objet = []
         mise_a_jour()
-        efface_tout()
+        efface('plato')
     lol(centre, taille)
