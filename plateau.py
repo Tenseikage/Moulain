@@ -2,11 +2,9 @@ def creer_plateau_vide912():
     """
     Créer un plateau vide pour la variante à 9 et 12 pions
     """
-    return [['', '', ''],
-            ['', '', ''],
+    return [['', '', '', '', '', ''],
             ['', '', '', '', '', ''],
-            ['', '', ''],
-            ['', '', '']]
+            ['', '', '', '', '', '']]
 
 
 def creer_plateau_vierge3():
@@ -20,11 +18,8 @@ def creer_plateau_vierge6():
     """
     Créer un plateau vide pour la variante 6
     """
-    return [['', '', ''],
-            ['', '', ''],
-            ['', '', '', ''],
-            ['', '', ''],
-            ['', '', '']]
+    return [['', '', '', '', '', ''],
+            ['', '', '', '', '', '']]
 
 
 def afficher_plateau(plateau):
