@@ -3,10 +3,11 @@ from random import random
 
 class Point:
     liste_objet=[]
-    def __init__(self,pos):
+    def __init__(self,pos,coord):
         self.pos = pos
         self.color = 'black'
         self.state = ''
+        self.coord = coord
         self.tag = str(random())
         Point.liste_objet.append(self)
 
@@ -24,6 +25,7 @@ class Point:
         if self.pos[0] - 10 < abscisse_souris() < self.pos[0] + 10 and self.pos[1] - 10 < ordonnee_souris() < self.pos[1] + 10:
             self.color = 'red'
             self.update()
+            print(self.coord)
             return True
         else:
             self.color = 'black'
