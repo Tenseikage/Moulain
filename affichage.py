@@ -41,8 +41,10 @@ def affiche_plateforme2(centre,taille): # a 12
     avec des points interactifs
     '''
     rectangle(centre[0] - taille*3, centre[0] - taille*3, centre[1] + taille*3, centre[1] + taille*3, couleur='', remplissage='#eee1c6', epaisseur=0,tag='plato')
+    id_carre = 3
     for i in range(3):
-        carre(centre,taille*(i+1))
+        id_carre -= 1
+        carre(centre,taille*(i+1),id_carre)
     #lignes
     for i in (0,1,-1):
         for j in (-1,1,0):
@@ -55,9 +57,11 @@ def affiche_plateforme3(centre,taille): # petit
     avec des points interactifs
     '''
     taille *= 3/2
+    id_carre = 2
     rectangle(centre[0] - taille*2, centre[0] - taille*2, centre[1] + taille*2, centre[1] + taille*2, couleur='', remplissage='#eee1c6', epaisseur=0,tag='plato')
     for i in range(2):
-        carre(centre,taille*(i+1))
+        id_carre -= 1
+        carre(centre,taille*(i+1),id_carre)
     #lignes
     ligne(centre[0], centre[1] - 2 * taille, centre[0], centre[1] - taille, couleur='black', epaisseur=5, tag='plato')
     ligne(centre[0], centre[1] + 2 * taille, centre[0], centre[1] + taille, couleur='black', epaisseur=5, tag='plato')
@@ -71,7 +75,7 @@ def affiche_plateforme4(centre,taille): #croisé
     '''
     taille *= 3/2
     rectangle(centre[0] - taille, centre[0] - taille, centre[1] + taille, centre[1] + taille, couleur='', remplissage='#eee1c6', epaisseur=0,tag='plato')
-    carre(centre, taille)
+    carre(centre, taille,0)
     point = Point(centre)
     point.affiche()
     ligne(centre[0] - taille, centre[0] - taille, centre[1] + taille, centre[1] + taille, couleur='black', epaisseur=5,tag='plato')
