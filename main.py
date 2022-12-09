@@ -1,26 +1,27 @@
 from affichage import *
-from point import Point
+import point as point
 
 cree_fenetre(1000,800)
 
 
-animationtrocool(1,(400,400),80)
+animationtrocool(2,(400,400),80)
+
+def interaction_clavier():
+    ev = donne_ev()
+    tev = type_ev(ev)
+
+    if tev == 'Quitte':
+        ferme_fenetre()
+
 
 
 def main():
     while True:
         mise_a_jour()
-        for position in Point.liste_objet:
-            position.mouse_over()
 
-        ev = donne_ev()
-        tev = type_ev(ev)
+        point.update_points()
 
-        if tev == 'Quitte':
-            break
-
-
-    ferme_fenetre()
+        interaction_clavier()
 
 
 

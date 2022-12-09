@@ -1,6 +1,6 @@
 import fltk as tk
 
-tk.cree_fenetre(400,400)
+
 
 
 class Button:
@@ -28,7 +28,7 @@ class Button:
         """
         Renvoie les coordonnées x et y minimale du bouton
         """
-        return self.coordxplace - self.xtaille / 2, self.coordyplace - self.ytaille / 2
+        return self.coordxplace - self.xtaille // 2, self.coordyplace - self.ytaille // 2
 
 
     def get_taille(self):
@@ -55,20 +55,21 @@ class Button:
     def is_touched(self, coords):
         """
         Vérifie si le boutton est cliqué
+        
         """
         x, y = coords
         if (self.get_coords()[0] < x < self.get_coords()[0] +
-            self.xtaille()[0] and self.get_coords()[1] < y <
-            self.get_coords()[1] + self.ytaille()[1]):
+            self.xtaille and self.get_coords()[1] < y <
+            self.get_coords()[1] + self.ytaille):
             return True
 
 
-def menu():
+def menu(button_j,button_q):
     """
-    Menu de jeu
+    Menu de jeu (button_j: coordonnées du bouton jouer, button_q)
     """
-    buttonjouer = Button(400, 200, 250, 75, 'jouer.gif', 'jouer')
-    buttonquitter = Button(400, 275, 250, 75, 'quitter.gif', 'quitter')
+    buttonjouer = button_j
+    buttonquitter = button_q
     buttonjouer.create_button()
     buttonquitter.create_button()
     tk.mise_a_jour()
@@ -79,17 +80,15 @@ def menu():
         tk.mise_a_jour()
         if tev == "ClicGauche": # Regarde si le clique gauche a été apuuyé
             coords_clickx, coords_clicky = tk.abscisse(event), tk.ordonnee(event)
-            if buttonjouer.is_touched((coords_clickx, coords_clicky)):
+            if buttonjouer.is_touched((coords_clickx,coords_clicky)):
             # Regarde si le clique à été effectué sur le bouton jouer
                 buttonjouer.destroy_button()
                 buttonquitter.destroy_button()
                 return True
-            if buttonquitter.is_touched():
+            if buttonquitter.is_touched((coords_clickx,coords_clicky)):
             # Regarde si le bouton quitter a été appuyé
-                tk.ferme_fenetre()
+                  break
+    tk.ferme_fenetre()
 
 
-buttonjouer = Button(400, 200, 250, 75, 'jouer.gif', 'jouer')
-buttonjouer.create_button()
-tk.attend_ev()
-tk.ferme_fenetre()
+
