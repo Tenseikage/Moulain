@@ -1,3 +1,12 @@
+from point import Point
+def creer_liste():
+    nb_carre = len(Point.liste_objet)/8
+    nb_carre = int(nb_carre)
+    plateau = [['','','','','','','','']]*nb_carre
+    for point in Point.liste_objet:
+        x, y = point.coord
+        plateau[x][y] = point
+    return plateau
 def creer_plateau_vide912():
     """
     Créer un plateau vide pour la variante à 9 et 12 pions
@@ -41,7 +50,7 @@ def deplacer_pion(coords, nwcoords, joueur, plateau):
     """
     x, y = coords
     x1, y1 = nwcoords
-    plateau[x][y] = ''
+    plateau[x][y].state = ''
     plateau[x1][y1] = joueur
 
 
@@ -50,7 +59,7 @@ def enlever_pion(coords, plateau):
     Enlève un pion dans le plateau de jeu
     """
     x, y = coords
-    plateau[x][y] = ''
+    plateau[x][y].state = ''
 
 
 def check_place(coords, plateau):
