@@ -2,7 +2,7 @@ from fltk import *
 from point import Point
 
 
-def carre(centre,taille):
+def carre(centre,taille,id_carre):
     '''
     Affiche un carré avec les parametres centre et taille
     avec des points interactifs sur les cotés (grace au objets de la classe point)
@@ -10,10 +10,12 @@ def carre(centre,taille):
     #faire le carré
     rectangle(centre[0]-taille, centre[0]-taille, centre[1]+taille, centre[1]+taille, 'black', '', 5, 'plato')
     #creer les points sur le carré
+    id_point = 0
     for i in range(-1, 2):
         for j in range(-1, 2):
             if not (i == 0 and j == 0):
-                point = Point((centre[0] + taille * j, centre[1] + taille * i))
+                point = Point((centre[0] + taille * j, centre[1] + taille * i),(id_carre,id_point))
+                id_point += 1
                 point.affiche()
 
 
@@ -22,8 +24,11 @@ def affiche_plateforme1(centre,taille):#basique
     Affiche la plateforme du jeu basique avec des points interactifs
     '''
     rectangle(centre[0] - taille*3, centre[0] - taille*3, centre[1] + taille*3, centre[1] + taille*3, '', '#eee1c6', 0,'plato')
+
+    id_carre = 3
     for i in range(3):
-        carre(centre,taille*(i+1))
+        id_carre -= 1
+        carre(centre,taille*(i+1),id_carre)
     #lignes
     ligne(centre[0], centre[1] - 3*taille, centre[0], centre[1] - taille, couleur='black', epaisseur=5, tag='plato')
     ligne(centre[0], centre[1] + 3 * taille, centre[0], centre[1] + taille, couleur='black', epaisseur=5, tag='plato')
