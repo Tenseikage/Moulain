@@ -1,4 +1,5 @@
 from point import Point
+
 def creer_liste():
     nb_carre = len(Point.liste_objet)/8
     nb_carre = int(nb_carre)
@@ -7,25 +8,6 @@ def creer_liste():
         x, y = point.coord
         plateau[x][y] = point
     return plateau
-def creer_plateau_vide912():
-    """
-    Créer un plateau vide pour la variante à 9 et 12 pions
-    """
-    return [['', '', '', '', '', ''] for _ in range(3)]
-
-
-def creer_plateau_vierge3():
-    """
-    Créer un plateau vide pour la variante 3
-    """
-    return [['', '', ''] for _ in range(3)]
-
-
-def creer_plateau_vierge6():
-    """
-    Créer un plateau vide pour la variante 6
-    """
-    return [['', '', '', '', '', ''] for _ in range(2)]
 
 
 def afficher_plateau(plateau):
@@ -62,10 +44,36 @@ def enlever_pion(coords, plateau):
     plateau[x][y].state = ''
 
 
-def check_place(coords, plateau):
+def verif_place(coords, plateau):
     """
     Regarde si l'endroit choisi dans le plateau est libre ou non
     """
     x, y = coords
     if plateau[x][y] == '':
         return True
+
+
+def moulin_ligne(coords, plateau, type_plat):
+    x, y = coords
+    if plateau[x][0].state == plateau[x][1].state == plateau[x][2].state:
+        return True
+    if plateau[x][5].state == plateau[x][6].state == plateau[x][7].state:
+        return True
+    if type_plat > 8:
+        if plateau[0][3].state == plateau[1][3].state == plateau[2][3].state:
+            return True
+        if plateau[0][4].state == plateau[1][4].state == plateau[2][4].state:
+            return True
+
+
+def moulin_colonne(coords, plateau, type_plat):
+    x, y = coords
+    if plateau[x][0].state == plateau[x][3].state == plateau[x][5].state:
+        return True
+    if plateau[x][2].state == plateau[x][4].state == plateau[x][7].state:
+        return True
+    if type_plat > 8:
+        if plateau[0][1].state == plateau[1][1].state == plateau[2][1].state:
+            return True
+        if plateau[0][6].state == plateau[1][6].state == plateau[2][6].state:
+            return True
