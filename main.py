@@ -6,7 +6,7 @@ from plateau import creer_liste
 cree_fenetre(1000,800)
 
 
-animationtrocool(3,(400,400),80)
+animation_plat(3,(400,400),80)
 
 def interaction_clavier():
     ev = donne_ev()

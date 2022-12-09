@@ -84,22 +84,17 @@ def affiche_plateforme4(centre,taille): #croisé
     ligne(centre[0] - taille, centre[0], centre[1] + taille, centre[1], couleur='black', epaisseur=5,tag='plato')
 
 
-def animationtrocool(plat,centre,taille):
-    if plat == 1:
-        lol = affiche_plateforme1
-    elif plat == 2:
-        lol = affiche_plateforme2
-    elif plat == 3:
-        lol = affiche_plateforme3
-    else:
-        lol = affiche_plateforme4
+def animation_plat(plat,centre,taille):
+    affiche_plat = [affiche_plateforme1, affiche_plateforme2 ,
+                    affiche_plateforme3, affiche_plateforme4]
 
     for i in range(taille):
-        lol(centre, i)
+        affiche_plat[plat-1](centre, i)
         for p in Point.liste_objet:
             p.efface()
             del p
+
         Point.liste_objet = []
         mise_a_jour()
         efface('plato')
-    lol(centre, taille)
+    affiche_plat[plat-1](centre, taille)
