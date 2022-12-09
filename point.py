@@ -6,7 +6,7 @@ class Point:
     def __init__(self,pos):
         self.pos = pos
         self.color = 'black'
-        self.state = 'vide'
+        self.state = ''
         self.tag = str(random())
         Point.liste_objet.append(self)
 
