@@ -10,7 +10,8 @@ class Point:
         self.coord = coord
         self.tag = str(random())
         self.dummy = dummy
-        Point.liste_objet.append(self)
+        if not dummy:
+            Point.liste_objet.append(self)
 
     def affiche(self):
         cercle(self.pos[0], self.pos[1], 10, couleur=self.color ,remplissage=self.color, tag='plato')
@@ -34,7 +35,7 @@ class Point:
 
 def update_points():
     for position in Point.liste_objet:
-        if position.dummy and position.mouse_over():
+        if position.mouse_over():
             position.color = 'red'
         else:
             position.color = 'black'
