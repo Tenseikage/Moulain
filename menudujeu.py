@@ -98,7 +98,9 @@ def presentation(centre,taille_x,taille_y): # centre : position centrale du rect
     colors = ['blue','yellow' , 'pink', 'purple','cyan']
     tk.rectangle(centre[0]-taille_x,centre[1]-taille_y,centre[0]+taille_x,centre[1]+taille_y,couleur= choice(colors), remplissage = choice(colors) ,
     	      tag = 'Rectangle')
-    
+    present_text('Jeu du moulin ', (500, 200), 300, 100)
+
+
 def present_text(string,centre,taille_x,taille_y):
         a= centre[0]-taille_x
         b= centre[1]-taille_y
