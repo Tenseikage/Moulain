@@ -2,7 +2,6 @@ from affichage import *
 from point import *
 from plateau import creer_liste
 from menudujeu import *
-from menu_moulin import *
 import sys 
 
 cree_fenetre(1000,800)
