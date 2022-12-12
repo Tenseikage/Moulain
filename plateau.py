@@ -1,6 +1,6 @@
 from point import Point
 
-def creer_liste(type_plat):
+def creer_liste(type_plat='Cest a regler tout sa'):
     nb_carre = len(Point.liste_objet)/8
     nb_carre = int(nb_carre)
     if type_plat == 3:
