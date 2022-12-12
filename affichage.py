@@ -71,13 +71,15 @@ def affiche_plateforme3(centre,taille): # petit
 def affiche_plateforme4(centre,taille): #croisé
     '''
     Affiche la plateforme de la variante du jeu a 3 pion
-    avec des points interactifs
+    avec des points interactifs, /!\ cette variante utilise un systeme de grille diférent des autres
     '''
     taille *= 3/2
     rectangle(centre[0] - taille, centre[0] - taille, centre[1] + taille, centre[1] + taille, couleur='', remplissage='#eee1c6', epaisseur=0,tag='plato')
-    carre(centre, taille,0)
-    point = Point(centre,(1,1))
-    point.affiche()
+    rectangle(centre[0] - taille, centre[0] - taille, centre[1] + taille, centre[1] + taille, 'black', '', 5, 'plato')
+    for i in range(-1,2):
+        for j in range(-1,2):
+            point = Point((centre[0] + taille*i,centre[1]+ taille*j),(j+1,i+1))
+            point.affiche()
     ligne(centre[0] - taille, centre[0] - taille, centre[1] + taille, centre[1] + taille, couleur='black', epaisseur=5,tag='plato')
     ligne(centre[0], centre[0] - taille, centre[1], centre[1] + taille, couleur='black', epaisseur=5,tag='plato')
     ligne(centre[0] + taille, centre[0] - taille, centre[1] - taille, centre[1] + taille, couleur='black', epaisseur=5,tag='plato')
