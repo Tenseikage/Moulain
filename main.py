@@ -19,19 +19,15 @@ def interaction_clavier():
         sys.exit()
 
 
-def initialisation_jeu():
+def initialisation_jeu(type_plat=1):
     '''
     affiche et cree le plateau
     ainsi que cree les
     variable du nombre de pions
     '''
-    aff.animation_plat(1, (400, 400), 80, False)
-
+    aff.animation_plat(type_plat, (350, 350), 80, False)
     plateau = plat.creer_liste()
-    nb_blanc = 0
-    nb_noir = 0
-    return plateau, nb_blanc, nb_noir
-
+    return plateau
 
 def attend_apui_bouton():
     '''
