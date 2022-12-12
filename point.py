@@ -3,12 +3,13 @@ from random import random
 
 class Point:
     liste_objet=[]
-    def __init__(self,pos,coord):
+    def __init__(self,pos,coord,dummy):
         self.pos = pos
         self.color = 'black'
         self.state = ''
         self.coord = coord
         self.tag = str(random())
+        self.dummy = dummy
         Point.liste_objet.append(self)
 
     def affiche(self):
@@ -33,7 +34,7 @@ class Point:
 
 def update_points():
     for position in Point.liste_objet:
-        if position.mouse_over():
+        if position.dummy and position.mouse_over():
             position.color = 'red'
         else:
             position.color = 'black'
