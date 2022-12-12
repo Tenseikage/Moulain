@@ -1,12 +1,18 @@
 from point import Point
 
-def creer_liste():
+def creer_liste(type_plat):
     nb_carre = len(Point.liste_objet)/8
     nb_carre = int(nb_carre)
-    plateau = [['','','','','','','','']]*nb_carre
-    for point in Point.liste_objet:
-        x, y = point.coord
-        plateau[x][y] = point
+    if type_plat == 3:
+        plateau = [['', '', '']*3]
+        for point in Point.liste_objet:
+            x, y = point.coord
+            plateau[x][y] = point
+    else:
+        plateau = [['','','','','','','','']]*nb_carre
+        for point in Point.liste_objet:
+            x, y = point.coord
+            plateau[x][y] = point
     return plateau
 
 
