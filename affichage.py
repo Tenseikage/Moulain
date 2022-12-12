@@ -76,7 +76,7 @@ def affiche_plateforme4(centre,taille): #croisé
     taille *= 3/2
     rectangle(centre[0] - taille, centre[0] - taille, centre[1] + taille, centre[1] + taille, couleur='', remplissage='#eee1c6', epaisseur=0,tag='plato')
     carre(centre, taille,0)
-    point = Point(centre)
+    point = Point(centre,(1,1))
     point.affiche()
     ligne(centre[0] - taille, centre[0] - taille, centre[1] + taille, centre[1] + taille, couleur='black', epaisseur=5,tag='plato')
     ligne(centre[0], centre[0] - taille, centre[1], centre[1] + taille, couleur='black', epaisseur=5,tag='plato')
