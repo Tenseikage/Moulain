@@ -14,7 +14,7 @@ def carre(centre,taille,id_carre,dummy):
     for i in range(-1, 2):
         for j in range(-1, 2):
             if not (i == 0 and j == 0):
-                point = Point((centre[0] + taille * j, centre[1] + taille * i),(id_carre,id_point),dummy)
+                point = Point((centre[0] + taille * j, centre[1] + taille * i),(id_carre,id_point), dummy)
                 id_point += 1
                 point.affiche()
 
@@ -28,7 +28,7 @@ def affiche_plateforme1(centre,taille,dummy):#basique
     id_carre = 3
     for i in range(3):
         id_carre -= 1
-        carre(centre,taille*(i+1),id_carre,not dummy)
+        carre(centre,taille*(i+1),id_carre,dummy)
     #lignes
     ligne(centre[0], centre[1] - 3*taille, centre[0], centre[1] - taille, couleur='black', epaisseur=5, tag='plato')
     ligne(centre[0], centre[1] + 3 * taille, centre[0], centre[1] + taille, couleur='black', epaisseur=5, tag='plato')
@@ -44,7 +44,7 @@ def affiche_plateforme2(centre,taille,dummy): # a 12
     id_carre = 3
     for i in range(3):
         id_carre -= 1
-        carre(centre,taille*(i+1),id_carre,not dummy)
+        carre(centre,taille*(i+1),id_carre,dummy)
     #lignes
     for i in (0,1,-1):
         for j in (-1,1,0):
@@ -61,7 +61,7 @@ def affiche_plateforme3(centre,taille,dummy): # petit
     rectangle(centre[0] - taille*2, centre[0] - taille*2, centre[1] + taille*2, centre[1] + taille*2, couleur='', remplissage='#eee1c6', epaisseur=0,tag='plato')
     for i in range(2):
         id_carre -= 1
-        carre(centre,taille*(i+1),id_carre,not dummy)
+        carre(centre,taille*(i+1),id_carre,dummy)
     #lignes
     ligne(centre[0], centre[1] - 2 * taille, centre[0], centre[1] - taille, couleur='black', epaisseur=5, tag='plato')
     ligne(centre[0], centre[1] + 2 * taille, centre[0], centre[1] + taille, couleur='black', epaisseur=5, tag='plato')
@@ -78,7 +78,7 @@ def affiche_plateforme4(centre,taille,dummy): #croisé
     rectangle(centre[0] - taille, centre[0] - taille, centre[1] + taille, centre[1] + taille, 'black', '', 5, 'plato')
     for i in range(-1,2):
         for j in range(-1,2):
-            point = Point((centre[0] + taille*i,centre[1]+ taille*j),(j+1,i+1),not dummy)
+            point = Point((centre[0] + taille*i,centre[1]+ taille*j),(j+1,i+1),dummy)
             point.affiche()
     ligne(centre[0] - taille, centre[0] - taille, centre[1] + taille, centre[1] + taille, couleur='black', epaisseur=5,tag='plato')
     ligne(centre[0], centre[0] - taille, centre[1], centre[1] + taille, couleur='black', epaisseur=5,tag='plato')
