@@ -87,11 +87,11 @@ def affiche_plateforme4(centre,taille,dummy): #croisé
 
 
 def animation_plat(plat,centre,taille,dummy):
-    affiche_plat = [affiche_plateforme1, affiche_plateforme2 ,
+    affiche_plat = [affiche_plateforme1, affiche_plateforme2,
                     affiche_plateforme3, affiche_plateforme4]
 
     for i in range(taille):
-        affiche_plat[plat-1](centre, i,True)
+        affiche_plat[plat-1](centre, i, True)
         for p in Point.liste_objet:
             p.efface()
             del p
@@ -99,4 +99,6 @@ def animation_plat(plat,centre,taille,dummy):
         Point.liste_objet = []
         mise_a_jour()
         efface('plato')
-    affiche_plat[plat-1](centre, taille,dummy)
+    affiche_plat[plat-1](centre, taille, dummy)
+    mise_a_jour()
+
