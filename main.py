@@ -11,7 +11,7 @@ def interaction_clavier():
     ev = donne_ev()
     tev = type_ev(ev)
     if tev == 'Quitte':
-        sys.exit(0)
+        sys.exit()
         
 
 
