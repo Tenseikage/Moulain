@@ -24,8 +24,9 @@ def main():
 
 
 
-presentation((100,100),2000,2000)
-present_text('Jeu du moulin ',(500,200),300,100)
+presentation((100,100),2000,2000) #menu
+
+
 if menu():
     efface_tout()
     animation_plat(3,(400,400),80)
