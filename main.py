@@ -5,10 +5,7 @@ from menudujeu import *
 from menu_moulin import *
 import sys 
 
-
-
 cree_fenetre(1000,800)
-
 
 
 def interaction_clavier():

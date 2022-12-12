@@ -66,7 +66,7 @@ class Button:
 
 def menu():
     """
-    Menu de jeu (button_j: coordonnées du bouton jouer, button_q)
+    Menu de jeu
     """
     buttonjouer = Button(500, 500, 250, 75, 'jouer.gif', 'jouer')
     buttonquitter = Button(500, 600, 250, 75, 'quitter.gif', 'quitter')
