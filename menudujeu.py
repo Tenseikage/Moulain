@@ -64,12 +64,12 @@ class Button:
             return True
 
 
-def menu(button_j,button_q):
+def menu():
     """
     Menu de jeu (button_j: coordonnées du bouton jouer, button_q)
     """
-    buttonjouer = button_j
-    buttonquitter = button_q
+    buttonjouer = Button(500, 500, 250, 75, 'jouer.gif', 'jouer')
+    buttonquitter = Button(500, 600, 250, 75, 'quitter.gif', 'quitter')
     buttonjouer.create_button()
     buttonquitter.create_button()
     tk.mise_a_jour()
@@ -87,7 +87,9 @@ def menu(button_j,button_q):
                 return True
             if buttonquitter.is_touched((coords_clickx,coords_clicky)):
             # Regarde si le bouton quitter a été appuyé
-                  break
+                buttonjouer.destroy_button()
+                buttonquitter.destroy_button()
+                return False
     tk.ferme_fenetre()
 
 
