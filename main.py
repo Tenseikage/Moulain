@@ -9,6 +9,10 @@ tk.cree_fenetre(1000, 800)
 
 
 def interaction_clavier():
+    '''
+    gere les interactions
+    (evenements fltk)
+    '''
     ev = tk.donne_ev()
     tev = tk.type_ev(ev)
     if tev == 'Quitte':
@@ -17,7 +21,9 @@ def interaction_clavier():
 
 def initialisation_jeu():
     '''
-    ah
+    affiche et cree le plateau
+    ainsi que cree les
+    variable du nombre de pions
     '''
     aff.animation_plat(1, (400, 400), 80, False)
 
@@ -34,11 +40,14 @@ def attend_apui_bouton():
     si oui, efface le menu et laisse le jeu ce jouer
     '''
     menu.presentation((100, 100), 2000, 2000)
-    if menu.menu():
+    if menu.menu(): #la fonction menu contien une boucle tans qu'un bouton n'est pas apuiyé
         tk.efface_tout()
 
 
 def main_jeu():
+    '''
+    gère la boucle du jeu principal
+    '''
     while True:
         tk.mise_a_jour()
         update_points()
@@ -46,6 +55,10 @@ def main_jeu():
 
 
 def main():
+    '''
+    gère la logique du programe
+    (logique du menu)
+    '''
     attend_apui_bouton()
 
     initialisation_jeu()
