@@ -70,10 +70,9 @@ def moulin_colonne(coords, plateau, type_plat):
     if plateau[x][2].state == plateau[x][4].state == plateau[x][7].state:
         return True
     if type_plat > 8:
-        if plateau[0][1].state == plateau[1][1].state == plateau[2][1].state:
-            return True
-        if plateau[0][6].state == plateau[1][6].state == plateau[2][6].state:
-            return True
+        for i in [1, 6]:
+            if plateau[0][i].state == plateau[1][i].state == plateau[2][i].state:
+                return True
 
 
 def moulin_diagonale(coords, plateau, type_plat):
