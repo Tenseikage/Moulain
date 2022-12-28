@@ -14,7 +14,7 @@ class Point:
             Point.liste_objet.append(self)
 
     def affiche(self):
-        cercle(self.pos[0], self.pos[1], 10, couleur=self.color ,remplissage=self.color, tag='plato')
+        cercle(self.pos[0], self.pos[1], 13, couleur=self.color ,remplissage=self.color, tag=self.tag)
 
     def efface(self):
         efface(self.tag)
@@ -24,7 +24,7 @@ class Point:
         self.affiche()
 
     def mouse_over(self):
-        if self.pos[0] - 10 < abscisse_souris() < self.pos[0] + 10 and self.pos[1] - 10 < ordonnee_souris() < self.pos[1] + 10:
+        if self.pos[0] - 13 < abscisse_souris() < self.pos[0] + 13 and self.pos[1] - 13 < ordonnee_souris() < self.pos[1] + 13:
             self.color = 'red'
             self.update()
             return True
