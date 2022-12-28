@@ -1,9 +1,9 @@
-import affichage as aff
 import fltk as tk
 import plateau as plat
 from point import update_points
 import menudujeu as menu
 import sys
+from affichage import Plateau
 
 tk.cree_fenetre(1000, 800)
 
@@ -19,14 +19,21 @@ def interaction_clavier():
         sys.exit()
 
 
-def initialisation_jeu(type_plat=1):
+def initialisation_jeu(type_plat):
     '''
     affiche et cree le plateau
     ainsi que cree les
     variable du nombre de pions
     '''
-    aff.animation_plat(type_plat, (350, 350), 80, False)
-    plateau = plat.creer_liste()
+    tk.rectangle(0, 0, 1100, 1100, '','#999999', 0, 'background')
+
+    plate = Plateau((300,500),80,type_plat,False)
+    plate.affiche_animation()
+    if plate.type !=4:
+        plateau = plat.creer_liste()
+    else:
+        plateau = ''
+        pass #creer lliste de plateau croisé (a voir comment vous voulez faire la logique de celui la)
     return plateau
 
 def attend_apui_bouton():
@@ -49,15 +56,15 @@ def main_jeu():
         update_points()
         interaction_clavier()
 
-
 def main():
     '''
     gère la logique du programe
     (logique du menu)
     '''
-    attend_apui_bouton()
+    type_plat = 1 #pour l'instant c'est sa mais va faloir faire un return avec les boutons selectionés
 
-    initialisation_jeu()
+    attend_apui_bouton()
+    initialisation_jeu(type_plat)
     main_jeu()
 
 main()
