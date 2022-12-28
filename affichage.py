@@ -1,14 +1,14 @@
-from fltk import *
+from fltk import rectangle, ligne, efface, mise_a_jour
 from point import Point
+from random import random
 
-
-def carre(centre,taille,id_carre,dummy):
+def carre(centre,taille,id_carre,dummy,tag):
     '''
     Affiche un carré avec les parametres centre et taille
     avec des points interactifs sur les cotés (grace au objets de la classe point)
     '''
     #faire le carré
-    rectangle(centre[0]-taille, centre[0]-taille, centre[1]+taille, centre[1]+taille, 'black', '', 5, 'plato')
+    rectangle(centre[0]-taille, centre[1]-taille, centre[0]+taille, centre[1]+taille, 'black', '', 7, tag)
     #creer les points sur le carré
     id_point = 0
     for i in range(-1, 2):
@@ -18,87 +18,83 @@ def carre(centre,taille,id_carre,dummy):
                 id_point += 1
                 point.affiche()
 
+class Plateau:
+    def __init__(self,centre,taille,type,dummy):
+        self.centre = centre
+        self.taille = taille
+        self.dummy = dummy
+        self.type = type
+        self.tag = str(random()) #tag unique pour fltk
 
-def affiche_plateforme1(centre,taille,dummy):#basique
-    '''
-    Affiche la plateforme du jeu basique avec des points interactifs
-    '''
-    rectangle(centre[0] - taille*3, centre[0] - taille*3, centre[1] + taille*3, centre[1] + taille*3, '', '#eee1c6', 0,'plato')
+    def affiche(self):  # basique
+        '''
+        Affiche la plateforme du jeu basique avec des points interactifs
+        '''
+        rectangle(self.centre[0] - self.taille * 3, self.centre[1] - self.taille * 3, self.centre[0] + self.taille * 3,self.centre[1] + self.taille * 3, '', '#eee1c6', 0, self.tag)
 
-    id_carre = 3
-    for i in range(3):
-        id_carre -= 1
-        carre(centre,taille*(i+1),id_carre,dummy)
-    #lignes
-    ligne(centre[0], centre[1] - 3*taille, centre[0], centre[1] - taille, couleur='black', epaisseur=5, tag='plato')
-    ligne(centre[0], centre[1] + 3 * taille, centre[0], centre[1] + taille, couleur='black', epaisseur=5, tag='plato')
-    ligne(centre[0]- 3 * taille, centre[1],centre[0]- taille, centre[1], couleur='black', epaisseur=5, tag='plato')
-    ligne(centre[0] + 3 * taille, centre[1], centre[0] + taille, centre[1], couleur='black', epaisseur=5, tag='plato')
+        if self.type == 1:
+            id_carre = 3
+            for i in range(3):
+                id_carre -= 1
+                carre(self.centre, self.taille * (i + 1), id_carre, self.dummy,self.tag)
 
-def affiche_plateforme2(centre,taille,dummy): # a 12
-    '''
-    Affiche la plateforme de la variante du jeu a 12
-    avec des points interactifs
-    '''
-    rectangle(centre[0] - taille*3, centre[0] - taille*3, centre[1] + taille*3, centre[1] + taille*3, couleur='', remplissage='#eee1c6', epaisseur=0,tag='plato')
-    id_carre = 3
-    for i in range(3):
-        id_carre -= 1
-        carre(centre,taille*(i+1),id_carre,dummy)
-    #lignes
-    for i in (0,1,-1):
-        for j in (-1,1,0):
-            ligne(centre[0] + 3*i * taille, centre[1] + 3*j * taille, centre[0] + i * taille, centre[1] + j * taille, couleur='black', epaisseur=5, tag='plato')
+            ligne(self.centre[0], self.centre[1] - 3 * self.taille, self.centre[0], self.centre[1] - self.taille, couleur='black', epaisseur=7,tag=self.tag)
+            ligne(self.centre[0], self.centre[1] + 3 * self.taille, self.centre[0], self.centre[1] + self.taille, couleur='black', epaisseur=7,tag=self.tag)
+            ligne(self.centre[0] - 3 * self.taille, self.centre[1], self.centre[0] - self.taille, self.centre[1], couleur='black', epaisseur=7,tag=self.tag)
+            ligne(self.centre[0] + 3 * self.taille, self.centre[1], self.centre[0] + self.taille, self.centre[1], couleur='black', epaisseur=7,tag=self.tag)
 
+        if self.type == 2:
+            id_carre = 3
+            for i in range(3):
+                id_carre -= 1
+                carre(self.centre, self.taille * (i + 1), id_carre, self.dummy,self.tag)
+            # lignes
+            for i in (0, 1, -1):
+                for j in (-1, 1, 0):
+                    ligne(self.centre[0] + 3 * i * self.taille, self.centre[1] + 3 * j * self.taille, self.centre[0] + i * self.taille, self.centre[1] + j * self.taille, 'black', 7, self.tag)
 
-def affiche_plateforme3(centre,taille,dummy): # petit
-    '''
-    Affiche la plateforme de la variante du jeu avec petite plateforme
-    avec des points interactifs
-    '''
-    taille *= 3/2
-    id_carre = 2
-    rectangle(centre[0] - taille*2, centre[0] - taille*2, centre[1] + taille*2, centre[1] + taille*2, couleur='', remplissage='#eee1c6', epaisseur=0,tag='plato')
-    for i in range(2):
-        id_carre -= 1
-        carre(centre,taille*(i+1),id_carre,dummy)
-    #lignes
-    ligne(centre[0], centre[1] - 2 * taille, centre[0], centre[1] - taille, couleur='black', epaisseur=5, tag='plato')
-    ligne(centre[0], centre[1] + 2 * taille, centre[0], centre[1] + taille, couleur='black', epaisseur=5, tag='plato')
-    ligne(centre[0] - 2 * taille, centre[1], centre[0] - taille, centre[1], couleur='black', epaisseur=5, tag='plato')
-    ligne(centre[0] + 2 * taille, centre[1], centre[0] + taille, centre[1], couleur='black', epaisseur=5, tag='plato')
+        if self.type == 3:
+            id_carre = 2
+            for i in range(2):
+                id_carre -= 1
+                carre(self.centre, self.taille*3/2 * (i + 1), id_carre, self.dummy, self.tag)
+            # lignes
+            ligne(self.centre[0], self.centre[1] - 2 * self.taille*3/2, self.centre[0], self.centre[1] - self.taille*3/2, couleur='black', epaisseur=7,tag=self.tag)
+            ligne(self.centre[0], self.centre[1] + 2 * self.taille*3/2, self.centre[0], self.centre[1] + self.taille*3/2, couleur='black', epaisseur=7,tag=self.tag)
+            ligne(self.centre[0] - 2 * self.taille*3/2, self.centre[1], self.centre[0] - self.taille*3/2, self.centre[1], couleur='black', epaisseur=7,tag=self.tag)
+            ligne(self.centre[0] + 2 * self.taille*3/2, self.centre[1], self.centre[0] + self.taille*3/2, self.centre[1], couleur='black', epaisseur=7,tag=self.tag)
 
-def affiche_plateforme4(centre,taille,dummy): #croisé
-    '''
-    Affiche la plateforme de la variante du jeu a 3 pion
-    avec des points interactifs, /!\ cette variante utilise un systeme de grille diférent des autres
-    '''
-    taille *= 3/2
-    rectangle(centre[0] - taille, centre[0] - taille, centre[1] + taille, centre[1] + taille, couleur='', remplissage='#eee1c6', epaisseur=0,tag='plato')
-    rectangle(centre[0] - taille, centre[0] - taille, centre[1] + taille, centre[1] + taille, 'black', '', 5, 'plato')
-    for i in range(-1,2):
-        for j in range(-1,2):
-            point = Point((centre[0] + taille*i,centre[1]+ taille*j),(j+1,i+1),dummy)
-            point.affiche()
-    ligne(centre[0] - taille, centre[0] - taille, centre[1] + taille, centre[1] + taille, couleur='black', epaisseur=5,tag='plato')
-    ligne(centre[0], centre[0] - taille, centre[1], centre[1] + taille, couleur='black', epaisseur=5,tag='plato')
-    ligne(centre[0] + taille, centre[0] - taille, centre[1] - taille, centre[1] + taille, couleur='black', epaisseur=5,tag='plato')
-    ligne(centre[0] - taille, centre[0], centre[1] + taille, centre[1], couleur='black', epaisseur=5,tag='plato')
+        if self.type == 4:
+            rectangle(self.centre[0] - self.taille * 3 , self.centre[1] - self.taille * 3 ,self.centre[0] + self.taille * 3, self.centre[1] + self.taille * 3, 'black', '', 7,self.tag)
+
+            for i in range(-1, 2):
+                for j in range(-1, 2):
+                    point = Point((self.centre[0] + self.taille * 3 * i, self.centre[1] + self.taille * 3 * j),
+                                  (j + 1, i + 1), self.dummy)
+                    point.affiche()
+
+            ligne(self.centre[0], self.centre[1] - 3 * self.taille, self.centre[0], self.centre[1],couleur='black', epaisseur=7, tag=self.tag)
+            ligne(self.centre[0], self.centre[1] + 3 * self.taille, self.centre[0], self.centre[1],couleur='black', epaisseur=7, tag=self.tag)
+            ligne(self.centre[0] - 3 * self.taille, self.centre[1], self.centre[0], self.centre[1],couleur='black', epaisseur=7, tag=self.tag)
+            ligne(self.centre[0] + 3 * self.taille, self.centre[1], self.centre[0], self.centre[1],couleur='black', epaisseur=7, tag=self.tag)
+
+            ligne(self.centre[0] - 3 * self.taille, self.centre[1] - 3 * self.taille, self.centre[0] + 3 * self.taille, self.centre[1] + 3 * self.taille, couleur='black',epaisseur=7, tag=self.tag)
+            ligne(self.centre[0] + 3 * self.taille, self.centre[1] - 3 * self.taille, self.centre[0] - 3 * self.taille, self.centre[1] + 3 * self.taille, couleur='black', epaisseur=7, tag=self.tag)
 
 
-def animation_plat(plat,centre,taille,dummy):
-    affiche_plat = [affiche_plateforme1, affiche_plateforme2,
-                    affiche_plateforme3, affiche_plateforme4]
+    def affiche_animation(self):
+        '''
+        Anime l'aparition du plateau
+        '''
+        for i in range(self.taille):
+            self.taille = i + 1
+            self.affiche()
+            mise_a_jour()
 
-    for i in range(taille):
-        affiche_plat[plat-1](centre, i, True)
-        for p in Point.liste_objet:
-            p.efface()
-            del p
+            for p in Point.liste_objet:
+                p.efface()
+                del p
+            Point.liste_objet = []
+            efface(self.tag)
 
-        Point.liste_objet = []
-        mise_a_jour()
-        efface('plato')
-    affiche_plat[plat-1](centre, taille, dummy)
-    mise_a_jour()
-
+        self.affiche()
