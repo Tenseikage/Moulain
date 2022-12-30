@@ -69,8 +69,8 @@ def menu():
     """
     Menu de jeu
     """
-    buttonjouer = Button(500, 500, 250, 75, 'jouer.gif', 'jouer')
-    buttonquitter = Button(500, 600, 250, 75, 'quitter.gif', 'quitter')
+    buttonjouer = Button(500, 500, 250, 75, 'images_jeu/jouer.gif', 'jouer')
+    buttonquitter = Button(500, 600, 250, 75, 'images_jeu/quitter.gif', 'quitter')
     buttonjouer.create_button()
     buttonquitter.create_button()
     tk.mise_a_jour()
