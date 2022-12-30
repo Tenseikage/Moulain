@@ -25,9 +25,9 @@ def initialisation_jeu(type_plat):
     ainsi que cree les
     variable du nombre de pions
     '''
-    tk.rectangle(0, 0, 1100, 1100, '','#999999', 0, 'background')
+    tk.rectangle(0, 0, 1000, 1000, '','#999999', 0, 'background')
 
-    plate = Plateau((300,500),80,type_plat,False)
+    plate = Plateau((300,300),80,type_plat,False)
     plate.affiche_animation()
     if plate.type !=4:
         plateau = plat.creer_liste()
@@ -45,7 +45,8 @@ def attend_apui_bouton():
     menu.presentation((100, 100), 2000, 2000)
     if menu.menu(): #la fonction menu contien une boucle tans qu'un bouton n'est pas apuiyé
         tk.efface_tout()
-
+        #menu.present_text('Choisissez votre plateau ', (500, 200), 300, 100,'text')
+        return menu.menu2()
 
 def main_jeu():
     '''
@@ -61,10 +62,10 @@ def main():
     gère la logique du programe
     (logique du menu)
     '''
-    type_plat = 1 #pour l'instant c'est sa mais va faloir faire un return avec les boutons selectionés
 
-    attend_apui_bouton()
-    initialisation_jeu(type_plat)
+    a = attend_apui_bouton() # variable permettant d'afficher le type de plateau
+    initialisation_jeu(a)
     main_jeu()
+
 
 main()
