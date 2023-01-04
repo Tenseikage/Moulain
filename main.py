@@ -7,6 +7,19 @@ from affichage import Plateau
 
 tk.cree_fenetre(1000, 800)
 
+def switch_player(joueur):
+    if joueur == 'b':
+        return 'n'
+    else:
+        return 'b'
+
+def coup(coord_clic,tour_joueur,plateau):
+    plateau, coup_valide = plat.placer_pion(coord_clic, tour_joueur, plateau)
+    if coup_valide:
+        print('tour de', switch_player(tour_joueur))
+    else:
+        print('fils de pute mauvai truc')
+    return plateau, coup_valide
 
 def interaction_clavier():
     '''
@@ -48,18 +61,31 @@ def attend_apui_bouton():
         #menu.present_text('Choisissez votre plateau ', (500, 200), 300, 100,'text')
         return menu.menu2()
 
-def main_jeu(nb_pion):
+def main_jeu(plateau,nb_pion):
     '''
     gère la boucle du jeu principal
     '''
-    while True:
-        phase = 'placement piont'
-        tour_joueur = 'n'
-
-
-        tk.mise_a_jour()
-        update_points()
+    phase = 'placement pion'
+    tour_joueur = 'n'
+    pion_b_dispo = nb_pion
+    pion_n_dispo = nb_pion
+    while phase == 'placement pion':
         interaction_clavier()
+        tk.mise_a_jour()
+
+        coord_clic = update_points() #detecte click gauche sur position de pions
+        if coord_clic != None:
+            plateau, coup_valide = coup(coord_clic,tour_joueur,plateau)
+            #metre -1 au nombre de pion et switch tour joueur
+            if coup_valide and tour_joueur == 'n':
+                pion_n_dispo += -1
+                tour_joueur = switch_player(tour_joueur)
+            elif coup_valide and tour_joueur == 'b':
+                pion_b_dispo += -1
+                tour_joueur = switch_player(tour_joueur)
+
+        if pion_n_dispo == 0 and pion_b_dispo == 0:
+            phase = 'deplacement pion'
 
 def main():
     '''
@@ -77,8 +103,8 @@ def main():
 
     nombre_pion = dico_nb_pion[plat]
 
-    initialisation_jeu(plat)
-    main_jeu(nombre_pion)
+    plateau = initialisation_jeu(plat)
+    main_jeu(plateau,nombre_pion)
 
 
 main()
