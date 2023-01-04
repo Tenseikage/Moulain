@@ -68,12 +68,13 @@ class Button:
 
 def menu():
     """
-    Menu de jeu
+    Menu de jeu avec création des boutons jouer et quitter 
+    et gestion des évènements des souris lors du clic sur un des boutons
     """
     buttonjouer = Button(500, 500, 250, 75, 'images_jeu/jouer.gif', 'jouer')
     buttonquitter = Button(500, 600, 250, 75, 'images_jeu/quitter.gif', 'quitter')
-    buttonjouer.create_button()
-    buttonquitter.create_button()
+    buttonjouer.create_button() # creation du bouton jouer
+    buttonquitter.create_button() # creration du bouton quitter
     tk.mise_a_jour()
     choosing_event = True
     while choosing_event:
@@ -92,19 +93,24 @@ def menu():
                 buttonjouer.destroy_button()
                 buttonquitter.destroy_button()
                 sys.exit()
-                return False
     tk.ferme_fenetre()
 
 def menu2():
+    """
+    Menu du jeu avec ajout d'un fond pour le plateau et 
+    de boutons pour permettre au joueur de choisir le jeu
+    """
     tk.rectangle(0, 0, 1000, 1000, '', '#eee2b0', 0, 'background')
     buttonred = []
+    variante = [9,12,6,3]
     for i in range(4):
-        button = Button(140 + 240*i, 500, 201, 201, 'images_jeu/red.png', 'red')
+        button = Button(140 + 240*i, 500, 201, 201, 'images_jeu/red.png', 'red') 
         button.create_button()
         buttonred.append(button)
         plat = aff.Plateau((140+240*i,500), 28, i+1, True)
         plat.affiche_animation()
-
+        present_text(f'Variante à \n {variante[i]} pions', (150+240*i, 650), 200, 100,20)                         # 1er : (150,200)
+    present_text('Choissisez un plateau ', (500, 200), 300, 400,60)
     tk.mise_a_jour()
     choosing_event = True
     while choosing_event:
@@ -138,15 +144,16 @@ def presentation(centre,taille_x,taille_y): # centre : position centrale du rect
     colors = ['blue','yellow' , 'pink', 'purple','cyan']
     tk.rectangle(centre[0]-taille_x,centre[1]-taille_y,centre[0]+taille_x,centre[1]+taille_y,couleur= choice(colors), remplissage = choice(colors) ,
     	      tag = 'Rectangle')
-    present_text('Jeu du moulin ', (500, 200), 300, 100)
+    present_text('Jeu du moulin ', (500, 200), 300, 100,60)
 
 
-def present_text(string,centre,taille_x,taille_y):
+def present_text(string,centre,taille_x,taille_y,police):
+        """Cette fonction permet de cadrer le texte de présentation"""
         a= centre[0]-taille_x
         b= centre[1]-taille_y
         c = centre[0]+taille_x
         d = centre[1]+taille_y
-        tk.texte(a+(c-a)//2,b+(d-b)//2,chaine=string,taille=60,couleur= 'black', ancrage='center',
+        tk.texte(a+(c-a)//2,b+(d-b)//2,chaine=string,taille=police,couleur= 'black', ancrage='center',
     	      tag = 'text')
         
         
