@@ -6,7 +6,7 @@ class Point:
     def __init__(self,pos,coord,dummy):
         self.pos = pos
         self.color = 'black'
-        self.state = ''
+        self.state = 'b'
         self.coord = coord
         self.tag = str(random())
         self.dummy = dummy
@@ -14,7 +14,12 @@ class Point:
             Point.liste_objet.append(self)
 
     def affiche(self):
-        cercle(self.pos[0], self.pos[1], 13, couleur=self.color ,remplissage=self.color, tag=self.tag)
+        if self.state == '':
+            cercle(self.pos[0], self.pos[1], 13, couleur=self.color ,remplissage=self.color, tag=self.tag)
+        elif self.state == 'n':
+            cercle(self.pos[0], self.pos[1], 17, couleur=self.color ,remplissage='#222222', tag=self.tag)
+        elif self.state == 'b':
+            cercle(self.pos[0], self.pos[1], 17, couleur=self.color ,remplissage='white', tag=self.tag)
 
     def efface(self):
         efface(self.tag)
