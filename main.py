@@ -87,6 +87,23 @@ def main_jeu(plateau,nb_pion):
         if pion_n_dispo == 0 and pion_b_dispo == 0:
             phase = 'deplacement pion'
 
+
+        '''
+        reste les moulin
+        '''
+
+
+
+
+
+
+        while phase == 'deplacement pion':
+            interaction_clavier()
+            tk.mise_a_jour()
+
+            clic = update_points()
+
+
 def main():
     '''
     gère la logique du programe
