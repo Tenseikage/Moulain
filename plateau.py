@@ -28,7 +28,7 @@ def placer_pion(coords, joueur, plateau):
     Place un pion dans le plateau de jeu
     """
     x, y = coords
-    plateau[x][y] = joueur
+    plateau[x][y].state = joueur
     return plateau
 
 
