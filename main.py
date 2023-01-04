@@ -63,8 +63,8 @@ def main():
     (logique du menu)
     '''
 
-    a = attend_apui_bouton() # variable permettant d'afficher le type de plateau
-    initialisation_jeu(a)
+    plat = attend_apui_bouton() # variable permettant d'afficher le type de plateau
+    initialisation_jeu(plat)
     main_jeu()
 
 
