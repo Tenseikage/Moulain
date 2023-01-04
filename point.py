@@ -6,7 +6,7 @@ class Point:
     def __init__(self,pos,coord,dummy):
         self.pos = pos
         self.color = 'black'
-        self.state = 'b'
+        self.state = ''
         self.coord = coord
         self.tag = str(random())
         self.dummy = dummy
