@@ -48,11 +48,15 @@ def attend_apui_bouton():
         #menu.present_text('Choisissez votre plateau ', (500, 200), 300, 100,'text')
         return menu.menu2()
 
-def main_jeu():
+def main_jeu(nb_pion):
     '''
     gère la boucle du jeu principal
     '''
     while True:
+        phase = 'placement piont'
+        tour_joueur = 'n'
+
+
         tk.mise_a_jour()
         update_points()
         interaction_clavier()
@@ -63,9 +67,18 @@ def main():
     (logique du menu)
     '''
 
-    plat = attend_apui_bouton() # variable permettant d'afficher le type de plateau
+    dico_nb_pion = {
+        1 : 9,
+        2 : 12,
+        3 : 6,
+        4 : 3}
+
+    plat = attend_apui_bouton() #type de plateau
+
+    nombre_pion = dico_nb_pion[plat]
+
     initialisation_jeu(plat)
-    main_jeu()
+    main_jeu(nombre_pion)
 
 
 main()
