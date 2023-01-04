@@ -3,33 +3,34 @@ from point import Point
 def creer_liste(type_plat='Cest a regler tout sa'):
     nb_carre = len(Point.liste_objet)/8
     nb_carre = int(nb_carre)
-    if type_plat == 3:
-        plateau = [['', '', '']*3]
+    if type_plat == 4:
+        plateau = list([['', '', ''] for _ in range(3)])
         for point in Point.liste_objet:
             x, y = point.coord
             plateau[x][y] = point
     else:
-        plateau = [['','','','','','','','']]*nb_carre
+        plateau = [['','','','','','','',''] for _ in range(nb_carre)]
         for point in Point.liste_objet:
             x, y = point.coord
+            if plateau[x][y] != '':
+                print('aaaaaaaaa')
             plateau[x][y] = point
     return plateau
-
-
-def afficher_plateau(plateau):
-    """
-    Affiche le plateau
-    """
-    print(plateau)
 
 
 def placer_pion(coords, joueur, plateau):
     """
     Place un pion dans le plateau de jeu
+    retourne le plateau et la validité du coup
+    plateau inchangé si coup non valide
     """
-    x, y = coords
-    plateau[x][y].state = joueur
-    return plateau
+    if verif_place(coords, plateau):
+        x, y = coords
+        plateau[x][y].state = joueur
+        return (plateau,True)
+    else:
+        return (plateau,False)
+
 
 
 def deplacer_pion(coords, nwcoords, joueur, plateau):
@@ -55,7 +56,7 @@ def verif_place(coords, plateau):
     Regarde si l'endroit choisi dans le plateau est libre ou non
     """
     x, y = coords
-    if plateau[x][y] == '':
+    if plateau[x][y].state == '':
         return True
 
 
