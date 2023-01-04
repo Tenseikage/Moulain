@@ -1,6 +1,6 @@
 import fltk as tk
 from random import choice
-
+import affichage as aff
 
 
 
@@ -94,14 +94,13 @@ def menu():
     tk.ferme_fenetre()
 
 def menu2():
-    buttonred1 = Button(140, 400, 201, 201, 'images_jeu/red.png', 'red')
-    buttonred2 = Button(380, 400, 201, 201, 'images_jeu/red.png', "red")
-    buttonred3= Button(620, 400, 201, 201, 'images_jeu/red.png', "red")
-    buttonred4 = Button(860, 400, 201, 201, 'images_jeu/red.png', "red")
-    buttonred1.create_button()
-    buttonred2.create_button()
-    buttonred3.create_button()
-    buttonred4.create_button()
+    buttonred = []
+    for i in range(4):
+        button = Button(140 + 240*i, 400, 201, 201, 'images_jeu/red.png', 'red')
+        button.create_button()
+        buttonred.append(button)
+        plat = aff.Plateau((140+240*i,400), 30, i+1, True)
+        plat.affiche_animation()
 
     tk.mise_a_jour()
     choosing_event = True
@@ -111,29 +110,21 @@ def menu2():
         tk.mise_a_jour()
         if tev == "ClicGauche": # Regarde si le clique gauche a été apuuyé
             coords_clickx, coords_clicky = tk.abscisse(event), tk.ordonnee(event)
-            if buttonred1.is_touched((coords_clickx,coords_clicky)):
-                buttonred1.destroy_button()
-                buttonred2.destroy_button()
-                buttonred3.destroy_button()
-                buttonred4.destroy_button()
+            if buttonred[0].is_touched((coords_clickx,coords_clicky)):
+                for b in buttonred:
+                    b.destroy_button()
                 return 1
-            if buttonred2.is_touched((coords_clickx,coords_clicky)):
-                buttonred1.destroy_button()
-                buttonred2.destroy_button()
-                buttonred3.destroy_button()
-                buttonred4.destroy_button()
+            if buttonred[1].is_touched((coords_clickx,coords_clicky)):
+                for b in buttonred:
+                    b.destroy_button()
                 return 2
-            if buttonred3.is_touched((coords_clickx,coords_clicky)):
-                buttonred1.destroy_button()
-                buttonred2.destroy_button()
-                buttonred3.destroy_button()
-                buttonred4.destroy_button()
+            if buttonred[2].is_touched((coords_clickx,coords_clicky)):
+                for b in buttonred:
+                    b.destroy_button()
                 return 3
-            if buttonred4.is_touched((coords_clickx,coords_clicky)):
-                buttonred1.destroy_button()
-                buttonred2.destroy_button()
-                buttonred3.destroy_button()
-                buttonred4.destroy_button()
+            if buttonred[3].is_touched((coords_clickx,coords_clicky)):
+                for b in buttonred:
+                    b.destroy_button()
                 return 4
     tk.ferme_fenetre()
     
