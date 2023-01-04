@@ -1,4 +1,4 @@
-from fltk import cercle,abscisse_souris,ordonnee_souris,efface
+from fltk import cercle,abscisse_souris,ordonnee_souris,efface,donne_ev,type_ev
 from random import random
 
 class Point:
@@ -42,6 +42,11 @@ def update_points():
     for position in Point.liste_objet:
         if position.mouse_over():
             position.color = 'red'
+            ev = donne_ev()
+            tev = type_ev(ev)
+            if tev == 'ClicGauche':
+                print(position.coord)
+                return position.coord
         else:
             position.color = 'black'
         position.update()
