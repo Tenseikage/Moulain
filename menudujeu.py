@@ -1,6 +1,7 @@
 import fltk as tk
 from random import choice
 import affichage as aff
+import sys
 
 
 
@@ -90,16 +91,18 @@ def menu():
             # Regarde si le bouton quitter a été appuyé
                 buttonjouer.destroy_button()
                 buttonquitter.destroy_button()
+                sys.exit()
                 return False
     tk.ferme_fenetre()
 
 def menu2():
+    tk.rectangle(0, 0, 1000, 1000, '', '#eee2b0', 0, 'background')
     buttonred = []
     for i in range(4):
-        button = Button(140 + 240*i, 400, 201, 201, 'images_jeu/red.png', 'red')
+        button = Button(140 + 240*i, 500, 201, 201, 'images_jeu/red.png', 'red')
         button.create_button()
         buttonred.append(button)
-        plat = aff.Plateau((140+240*i,400), 30, i+1, True)
+        plat = aff.Plateau((140+240*i,500), 28, i+1, True)
         plat.affiche_animation()
 
     tk.mise_a_jour()
