@@ -33,40 +33,45 @@ class Plateau:
         rectangle(self.centre[0] - self.taille * 3, self.centre[1] - self.taille * 3, self.centre[0] + self.taille * 3,self.centre[1] + self.taille * 3, '', '#eee1c6', 0, self.tag)
 
         if self.type == 1:
+            id_carre = 3
+            for i in range(3):
+                id_carre -= 1
+                carre(self.centre, self.taille * (i + 1), id_carre, self.dummy,self.tag)
 
             ligne(self.centre[0], self.centre[1] - 3 * self.taille, self.centre[0], self.centre[1] - self.taille, couleur='black', epaisseur=7,tag=self.tag)
             ligne(self.centre[0], self.centre[1] + 3 * self.taille, self.centre[0], self.centre[1] + self.taille, couleur='black', epaisseur=7,tag=self.tag)
             ligne(self.centre[0] - 3 * self.taille, self.centre[1], self.centre[0] - self.taille, self.centre[1], couleur='black', epaisseur=7,tag=self.tag)
             ligne(self.centre[0] + 3 * self.taille, self.centre[1], self.centre[0] + self.taille, self.centre[1], couleur='black', epaisseur=7,tag=self.tag)
-        id_carre = 3
-        for i in range(3):
-            id_carre -= 1
-            carre(self.centre, self.taille * (i + 1), id_carre, self.dummy, self.tag)
 
         if self.type == 2:
+            id_carre = 3
+            for i in range(3):
+                id_carre -= 1
+                carre(self.centre, self.taille * (i + 1), id_carre, self.dummy,self.tag)
             # lignes
             for i in (0, 1, -1):
                 for j in (-1, 1, 0):
                     ligne(self.centre[0] + 3 * i * self.taille, self.centre[1] + 3 * j * self.taille, self.centre[0] + i * self.taille, self.centre[1] + j * self.taille, 'black', 7, self.tag)
-            id_carre = 3
-            for i in range(3):
-                id_carre -= 1
-                carre(self.centre, self.taille * (i + 1), id_carre, self.dummy, self.tag)
 
         if self.type == 3:
+            id_carre = 2
+            for i in range(2):
+                id_carre -= 1
+                carre(self.centre, self.taille*3/2 * (i + 1), id_carre, self.dummy, self.tag)
             # lignes
             ligne(self.centre[0], self.centre[1] - 2 * self.taille*3/2, self.centre[0], self.centre[1] - self.taille*3/2, couleur='black', epaisseur=7,tag=self.tag)
             ligne(self.centre[0], self.centre[1] + 2 * self.taille*3/2, self.centre[0], self.centre[1] + self.taille*3/2, couleur='black', epaisseur=7,tag=self.tag)
             ligne(self.centre[0] - 2 * self.taille*3/2, self.centre[1], self.centre[0] - self.taille*3/2, self.centre[1], couleur='black', epaisseur=7,tag=self.tag)
             ligne(self.centre[0] + 2 * self.taille*3/2, self.centre[1], self.centre[0] + self.taille*3/2, self.centre[1], couleur='black', epaisseur=7,tag=self.tag)
 
-            id_carre = 2
-            for i in range(2):
-                id_carre -= 1
-                carre(self.centre, self.taille * 3 / 2 * (i + 1), id_carre, self.dummy, self.tag)
-
         if self.type == 4:
             rectangle(self.centre[0] - self.taille * 3 , self.centre[1] - self.taille * 3 ,self.centre[0] + self.taille * 3, self.centre[1] + self.taille * 3, 'black', '', 7,self.tag)
+
+            for i in range(-1, 2):
+                for j in range(-1, 2):
+                    point = Point((self.centre[0] + self.taille * 3 * i, self.centre[1] + self.taille * 3 * j),
+                                  (j + 1, i + 1), self.dummy)
+                    point.affiche()
 
             ligne(self.centre[0], self.centre[1] - 3 * self.taille, self.centre[0], self.centre[1],couleur='black', epaisseur=7, tag=self.tag)
             ligne(self.centre[0], self.centre[1] + 3 * self.taille, self.centre[0], self.centre[1],couleur='black', epaisseur=7, tag=self.tag)
@@ -75,12 +80,6 @@ class Plateau:
 
             ligne(self.centre[0] - 3 * self.taille, self.centre[1] - 3 * self.taille, self.centre[0] + 3 * self.taille, self.centre[1] + 3 * self.taille, couleur='black',epaisseur=7, tag=self.tag)
             ligne(self.centre[0] + 3 * self.taille, self.centre[1] - 3 * self.taille, self.centre[0] - 3 * self.taille, self.centre[1] + 3 * self.taille, couleur='black', epaisseur=7, tag=self.tag)
-
-            for i in range(-1, 2):
-                for j in range(-1, 2):
-                    point = Point((self.centre[0] + self.taille * 3 * i, self.centre[1] + self.taille * 3 * j),
-                                  (j + 1, i + 1), self.dummy)
-                    point.affiche()
 
 
     def affiche_animation(self):
