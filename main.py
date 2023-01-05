@@ -88,7 +88,7 @@ def attend_apui_bouton():
         #menu.present_text('Choisissez votre plateau ', (500, 200), 300, 100,'text')
         return menu.menu2()
 
-def main_jeu(plateau,nb_pion):
+def main_jeu(plateau,nb_pion,type_plat):
     '''
     gère la boucle du jeu principal
     '''
@@ -111,7 +111,7 @@ def main_jeu(plateau,nb_pion):
             elif coup_valide and ancient_joueur == 'b':
                 pion_b_dispo += -1
             nb_ancien_moulins = nb_moulins
-            nb_moulins = plat.moulin(plateau)
+            nb_moulins = plat.moulin(plateau,type_plat)
             if nb_moulins - nb_ancien_moulins > 0:
                 attendre_enlever_pion(plateau,tour_joueur)
                 print('enleve un pion de :',tour_joueur)
@@ -150,7 +150,7 @@ def main():
     nombre_pion = dico_nb_pion[plat]
 
     plateau = initialisation_jeu(plat)
-    main_jeu(plateau,nombre_pion)
+    main_jeu(plateau,nombre_pion,plat)
 
 
 main()
