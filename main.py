@@ -26,6 +26,27 @@ def coup(coord_clic,joueur,plateau):
         nv_joueur = joueur
     return plateau, coup_valide, nv_joueur
 
+def attendre_enlever_pion(plateau,joueur_a_enlever_pion):
+    if joueur_a_enlever_pion == 'b':
+        joueur = 'blanc'
+    else:
+        joueur = 'noir'
+    tk.texte(730, 90, 'Enlever un pion '+joueur, couleur='red', ancrage='nw', police='Helvetica', taille=20, tag='pion_remove')
+
+    pion_adverse_non_enleve = True
+    while pion_adverse_non_enleve:
+        interaction_clavier()
+        tk.mise_a_jour()
+
+        clic = update_points()
+        if clic != None:
+            x, y = clic
+            if plateau[x][y].state == joueur_a_enlever_pion:
+                plat.enlever_pion(clic,plateau)
+                pion_adverse_non_enleve = False
+    tk.efface('pion_remove')
+
+
 def interaction_clavier():
     '''
     gere les interactions
@@ -52,11 +73,7 @@ def initialisation_jeu(type_plat):
 
     plate = Plateau((350,300),80,type_plat,False)
     plate.affiche_animation()
-    if plate.type !=4:
-        plateau = plat.creer_liste()
-    else:
-        plateau = ''
-        pass #creer lliste de plateau croisé (a voir comment vous voulez faire la logique de celui la)
+    plateau = plat.creer_liste(type_plat)
     return plateau
 
 def attend_apui_bouton():
@@ -79,6 +96,7 @@ def main_jeu(plateau,nb_pion):
     tour_joueur = 'n'
     pion_b_dispo = nb_pion
     pion_n_dispo = nb_pion
+    nb_moulins = 0
     while phase == 'placement pion':
         interaction_clavier()
         tk.mise_a_jour()
@@ -92,25 +110,27 @@ def main_jeu(plateau,nb_pion):
                 pion_n_dispo += -1
             elif coup_valide and ancient_joueur == 'b':
                 pion_b_dispo += -1
+            nb_ancien_moulins = nb_moulins
+            nb_moulins = plat.moulin(plateau)
+            if nb_moulins - nb_ancien_moulins > 0:
+                attendre_enlever_pion(plateau,tour_joueur)
+                print('enleve un pion de :',tour_joueur)
 
         if pion_n_dispo == 0 and pion_b_dispo == 0:
             phase = 'deplacement pion'
 
 
-        '''
-        reste les moulin
-        '''
 
 
 
 
 
 
-        while phase == 'deplacement pion':
-            interaction_clavier()
-            tk.mise_a_jour()
+    while phase == 'deplacement pion':
+        interaction_clavier()
+        tk.mise_a_jour()
 
-            clic = update_points()
+        clic = update_points()
 
 
 def main():
