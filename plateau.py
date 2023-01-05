@@ -31,14 +31,17 @@ def placer_pion(coords, joueur, plateau):
 
 
 
-def deplacer_pion(coords, nwcoords, joueur, plateau):
+def deplacer_pion(coords, nwcoords, plateau,type_plat):
     """
     Déplace un pion dans le plateau de jeu
     """
     x, y = coords
     x1, y1 = nwcoords
-    plateau[x][y].state = ''
-    plateau[x1][y1] = joueur
+    if plateau[x][y].state == '':
+        plateau[x][y].state, plateau[x1][y1].state = plateau[x1][y1].state,plateau[x][y].state
+        return True
+    else:
+        return False
 
 
 def enlever_pion(coords, plateau):
@@ -69,7 +72,7 @@ def moulin_dans_un_carre(carre,joueur):
         nb_moulin += 1
     return nb_moulin
 
-def moulin_joueur(plateau,joueur,type_plat):
+def moulin_joueur(plateau,joueur):
     moulin = 0
     for carre in plateau:
         moulin = moulin + moulin_dans_un_carre(carre,joueur)
@@ -79,14 +82,11 @@ def moulin_joueur(plateau,joueur,type_plat):
             if plateau[0][i].state == plateau[1][i].state == plateau[2][i].state == joueur:
                 moulin += 1
 
-    if type_plat == 2:
-        moulin += moulin_diagonal(plateau,joueur)
+    
     return moulin
 
-def moulin(plateau,type_plat):
-    if type_plat == 4:
-        return moulin_variante_4(plateau)
-    return moulin_joueur(plateau,'b',type_plat) + moulin_joueur(plateau,'n',type_plat)
+def moulin(plateau):
+    return moulin_joueur(plateau,'b') + moulin_joueur(plateau,'n')
 
 def moulin_diagonal(plateau,joueur):
     moulin_diag = 0
@@ -94,23 +94,3 @@ def moulin_diagonal(plateau,joueur):
         if plateau[0][i].state == plateau[1][i].state == plateau[2][i].state == joueur:
             moulin_diag += 1
     return moulin_diag
-
-def moulin_variante_4(plateau):
-    moulin = 0
-    for i in range(3):
-        if plateau[i][0].state == plateau[i][1].state == plateau[i][2].state != '':
-            moulin += 1
-    for i in range(3):
-        if plateau[0][i].state == plateau[1][1].state == plateau[2][i].state != '':
-            moulin += 1
-    if plateau[0][0].state == plateau[1][1].state == plateau[2][2].state != '':
-        moulin += 1
-    if plateau[0][2].state == plateau[1][1].state == plateau[2][0].state != '':
-        moulin += 1
-    return moulin
-
-
-
-    return moulin
-
-
