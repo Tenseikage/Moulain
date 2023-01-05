@@ -71,8 +71,8 @@ def menu():
     Menu de jeu avec création des boutons jouer et quitter 
     et gestion des évènements des souris lors du clic sur un des boutons
     """
-    buttonjouer = Button(500, 500, 250, 75, 'Moulain/images_jeu/jouer.gif', 'jouer')
-    buttonquitter = Button(500, 600, 250, 75, 'Moulain/images_jeu/quitter.gif', 'quitter')
+    buttonjouer = Button(500, 500, 250, 75, 'images_jeu/jouer.gif', 'jouer')
+    buttonquitter = Button(500, 600, 250, 75, 'images_jeu/quitter.gif', 'quitter')
     buttonjouer.create_button() # creation du bouton jouer
     buttonquitter.create_button() # creration du bouton quitter
     tk.mise_a_jour()
@@ -105,7 +105,7 @@ def menu2():
     buttonred = []
     variante = [9,12,6,3]
     for i in range(4):
-        button = Button(140 + 240*i, 500, 201, 201, 'Moulain/images_jeu/red.png', 'red') 
+        button = Button(140 + 240*i, 500, 201, 201, 'images_jeu/red.png', 'red')
         button.create_button()
         buttonred.append(button)
         plat = aff.Plateau((140+240*i,500), 28, i+1, True)
