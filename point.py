@@ -10,6 +10,7 @@ class Point:
         self.coord = coord
         self.tag = str(random())
         self.dummy = dummy
+        self.selected = False
         if not dummy:
             Point.liste_objet.append(self)
 
@@ -20,6 +21,9 @@ class Point:
                 image(self.pos[0]+30,self.pos[1]+30, 'images_jeu/oreo_n.png', tag=self.tag) #78%
         elif self.state == 'b':
             image(self.pos[0]+3,self.pos[1]+3, 'images_jeu/oreo_b.png', tag=self.tag)
+        if self.selected:
+            cercle(self.pos[0], self.pos[1], 6, couleur='red' ,remplissage='red', tag=self.tag)
+
 
     def efface(self):
         efface(self.tag)
