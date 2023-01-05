@@ -8,18 +8,23 @@ from affichage import Plateau
 tk.cree_fenetre(1000, 800)
 
 def switch_player(joueur):
+    tk.efface('joueur')
     if joueur == 'b':
+        tk.texte(730, 65, 'Noir', couleur='black', ancrage='nw', police='Helvetica', taille=20, tag='joueur')
         return 'n'
     else:
+        tk.texte(730, 65, 'Blanc', couleur='black', ancrage='nw', police='Helvetica', taille=20, tag='joueur')
         return 'b'
 
-def coup(coord_clic,tour_joueur,plateau):
-    plateau, coup_valide = plat.placer_pion(coord_clic, tour_joueur, plateau)
+def coup(coord_clic,joueur,plateau):
+    plateau, coup_valide = plat.placer_pion(coord_clic, joueur, plateau)
     if coup_valide:
-        print('tour de', switch_player(tour_joueur))
+        nv_joueur = switch_player(joueur)
+        print('tour de', nv_joueur)
     else:
         print('fils de pute mauvai truc')
-    return plateau, coup_valide
+        nv_joueur = joueur
+    return plateau, coup_valide, nv_joueur
 
 def interaction_clavier():
     '''
@@ -39,8 +44,12 @@ def initialisation_jeu(type_plat):
     variable du nombre de pions
     '''
     tk.rectangle(0, 0, 1000, 1000, '','#999999', 0, 'background')
+    tk.rectangle(700, 0, 1000, 1000, '', '#cccccc', 2, 'background')
+    tk.rectangle(0, 600, 1000, 1000, '', '#bbbbbb', 2, 'background')
 
-    plate = Plateau((300,300),80,type_plat,False)
+    tk.texte(730, 30, 'Tour du joueur :', couleur='black', ancrage='nw', police='Helvetica', taille=24, tag='background')
+
+    plate = Plateau((350,300),80,type_plat,False)
     plate.affiche_animation()
     if plate.type !=4:
         plateau = plat.creer_liste()
@@ -75,14 +84,13 @@ def main_jeu(plateau,nb_pion):
 
         coord_clic = update_points() #detecte click gauche sur position de pions
         if coord_clic != None:
-            plateau, coup_valide = coup(coord_clic,tour_joueur,plateau)
+            ancient_joueur = tour_joueur
+            plateau, coup_valide, tour_joueur = coup(coord_clic,tour_joueur,plateau)
             #metre -1 au nombre de pion et switch tour joueur
-            if coup_valide and tour_joueur == 'n':
+            if coup_valide and ancient_joueur == 'n':
                 pion_n_dispo += -1
-                tour_joueur = switch_player(tour_joueur)
-            elif coup_valide and tour_joueur == 'b':
+            elif coup_valide and ancient_joueur == 'b':
                 pion_b_dispo += -1
-                tour_joueur = switch_player(tour_joueur)
 
         if pion_n_dispo == 0 and pion_b_dispo == 0:
             phase = 'deplacement pion'
