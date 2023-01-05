@@ -101,6 +101,7 @@ def menu2():
     de boutons pour permettre au joueur de choisir le jeu
     """
     tk.rectangle(0, 0, 1000, 1000, '', '#eee2b0', 0, 'background')
+    present_text('Choisissez un plateau ', (500, 200), 300, 400,60)
     buttonred = []
     variante = [9,12,6,3]
     for i in range(4):
@@ -109,8 +110,7 @@ def menu2():
         buttonred.append(button)
         plat = aff.Plateau((140+240*i,500), 28, i+1, True)
         plat.affiche_animation()
-        present_text(f'Variante à \n {variante[i]} pions', (150+240*i, 650), 200, 100,20)                         # 1er : (150,200)
-    present_text('Choissisez un plateau ', (500, 200), 300, 400,60)
+        present_text(f'Variante à \n {variante[i]} pions', (150+240*i, 650), 200, 100,20)                         
     tk.mise_a_jour()
     choosing_event = True
     while choosing_event:
