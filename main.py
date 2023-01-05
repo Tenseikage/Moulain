@@ -131,6 +131,16 @@ def main_jeu(plateau,nb_pion,type_plat):
         tk.mise_a_jour()
 
         clic = update_points()
+        if clic != None:
+            selected = clic
+            deplace = not deplace
+        while deplace:
+            interaction_clavier()
+            tk.mise_a_jour()
+
+            clic = update_points()
+            if clic != None:
+                plat.deplacer_pion(selected, clic, plateau,type_plat)
 
 
 def main():
