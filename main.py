@@ -97,6 +97,7 @@ def main_jeu(plateau,nb_pion,type_plat):
     pion_b_dispo = nb_pion
     pion_n_dispo = nb_pion
     nb_moulins = 0
+    deplace = False
     while phase == 'placement pion':
         interaction_clavier()
         tk.mise_a_jour()
@@ -132,16 +133,24 @@ def main_jeu(plateau,nb_pion,type_plat):
 
         clic = update_points()
         if clic != None:
-            selected = clic
-            deplace = not deplace
+            if not plat.verif_place(clic,plateau):
+                selected = clic
+                deplace = not deplace
+                plateau[clic[0]][clic[1]].selected = True
         while deplace:
             interaction_clavier()
             tk.mise_a_jour()
 
             clic = update_points()
             if clic != None:
-                plat.deplacer_pion(selected, clic, plateau,type_plat)
-
+                if plat.deplacer_pion(clic, selected, plateau,type_plat):
+                    plateau[clic[0]][clic[1]].selected = False
+                    plateau[selected[0]][selected[1]].selected = False
+                    deplace = not deplace
+                else:
+                    clic = None
+                    print(clic,selected)
+            
 
 def main():
     '''
