@@ -8,6 +8,9 @@ from affichage import Plateau
 tk.cree_fenetre(1000, 800)
 
 def switch_player(joueur):
+    """
+    Change de joueur, de blanc à noir et de noir à blanc
+    """
     tk.efface('joueur')
     if joueur == 'b':
         tk.texte(730, 65, 'Noir', couleur='black', ancrage='nw', police='Helvetica', taille=20, tag='joueur')
@@ -17,6 +20,10 @@ def switch_player(joueur):
         return 'b'
 
 def coup(coord_clic,joueur,plateau):
+    """
+    Place un pion de la couleur du jouuer à qui c'est le tour de jouer,
+    au coordonnée en regardant si l'endroit est bien valide
+    """
     plateau, coup_valide = plat.placer_pion(coord_clic, joueur, plateau)
     if coup_valide:
         nv_joueur = switch_player(joueur)
@@ -27,6 +34,9 @@ def coup(coord_clic,joueur,plateau):
     return plateau, coup_valide, nv_joueur
 
 def attendre_enlever_pion(plateau,joueur_a_enlever_pion):
+    """
+    Affiche le texte qui dit qui doit enlever un pion
+    """
     if joueur_a_enlever_pion == 'b':
         joueur = 'blanc'
     else:
@@ -47,6 +57,9 @@ def attendre_enlever_pion(plateau,joueur_a_enlever_pion):
     tk.efface('pion_remove')
 
 def attendre_deplacement_de_pion(deplace,plateau,selected,type_plat,pion_n,pion_b,tour_joueur):
+    """
+    Pendant le déplacement de pion, regarde si l'endroit sélectionné est valide
+    """
     while deplace:
             interaction_clavier()
             tk.mise_a_jour()
@@ -177,6 +190,10 @@ def main_jeu(plateau,nb_pion,type_plat):
 
 
 def verif_fin(nb_pion_n,nb_pion_b,pion_n_dispo,pion_b_dispo):
+    """
+    Condition d'arrêt de jeu,
+    La fonction regarde si il y a moins de 3 pions du côté blanc ou noir
+    """
     if nb_pion_n < 3 and pion_n_dispo == 0:
         return menu.fin('b')
     if nb_pion_b < 3 and pion_b_dispo == 0:

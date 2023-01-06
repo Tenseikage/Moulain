@@ -1,6 +1,9 @@
 from point import Point
 
 def creer_liste(type_plat):
+    """
+    Créer le plateau de jeu sous forme de liste de liste par rapport au type du plateau
+    """
     nb_carre = len(Point.liste_objet)/8
     nb_carre = int(nb_carre)
     if type_plat == 4:
@@ -30,6 +33,9 @@ def placer_pion(coords, joueur, plateau):
         return (plateau,False)
 
 def point_adjacent(type_plat,poin1,poin2):
+    """
+    Regarde si le point adjacent de celui joué est vide ou non
+    """
     if type_plat == 4:
         return True
     adj_memm_carre = {
@@ -95,6 +101,9 @@ def verif_place(coords, plateau):
     return False
 
 def moulin_dans_un_carre(carre,joueur):
+    """
+    Regarde si un carré du plateau à un moulin et renvoie le nombre de moulin présents
+    """
     nb_moulin = 0
     if carre[0].state == carre[1].state == carre[2].state == joueur:
         nb_moulin += 1
@@ -107,6 +116,9 @@ def moulin_dans_un_carre(carre,joueur):
     return nb_moulin
 
 def moulin_joueur(plateau,joueur,type_plat):
+    """
+    Regarde combien il y a de loulin pour un joueur donné en argument
+    """
     moulin = 0
     for carre in plateau:
         moulin = moulin + moulin_dans_un_carre(carre,joueur)
@@ -120,11 +132,17 @@ def moulin_joueur(plateau,joueur,type_plat):
     return moulin
 
 def moulin(plateau,type_plat):
+    """
+    Renvoie le nombre de moulin qu'il y a si le plateau de jeu et le quatrieme
+    """
     if type_plat == 4:
         return moulin_variante_4(plateau)
     return moulin_joueur(plateau,'b',type_plat) + moulin_joueur(plateau,'n',type_plat)
 
 def moulin_diagonal(plateau,joueur):
+    """
+    Compte le nombre de moulin qu'il y a en diagonale
+    """
     moulin_diag = 0
     for i in (0, 2, 5, 7):
         if plateau[0][i].state == plateau[1][i].state == plateau[2][i].state == joueur:
@@ -132,6 +150,9 @@ def moulin_diagonal(plateau,joueur):
     return moulin_diag
 
 def moulin_variante_4(plateau):
+    """
+    Renvoie le nombre de moulin dans la variante 4 du mode de jeu
+    """
     moulin = 0
     for i in range(3):
         if plateau[i][0].state == plateau[i][1].state == plateau[i][2].state != '':

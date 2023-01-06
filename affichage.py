@@ -19,6 +19,9 @@ def carre(centre,taille,id_carre,dummy,tag):
                 point.affiche()
 
 class Plateau:
+    """
+    Classe qui gère le plateau
+    """
     def __init__(self,centre,taille,type,dummy):
         self.centre = centre
         self.taille = taille

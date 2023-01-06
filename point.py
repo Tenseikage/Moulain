@@ -2,6 +2,9 @@ from fltk import cercle,abscisse_souris,ordonnee_souris,efface,donne_ev,type_ev,
 from random import random
 
 class Point:
+    """
+    Classe qui gère les points du plateau
+    """
     liste_objet=[]
     def __init__(self,pos,coord,dummy):
         self.pos = pos
@@ -15,6 +18,9 @@ class Point:
             Point.liste_objet.append(self)
 
     def affiche(self):
+        """
+        Affiche les points sur le plateau de jeu
+        """
         if self.state == '':
             cercle(self.pos[0], self.pos[1], 13, couleur=self.color ,remplissage=self.color, tag=self.tag)
         elif self.state == 'n':
@@ -26,13 +32,22 @@ class Point:
 
 
     def efface(self):
+        """
+        Efface le point en argument
+        """
         efface(self.tag)
 
     def update(self):
+        """
+        Update le point en argument
+        """
         self.efface()
         self.affiche()
 
     def mouse_over(self):
+        """
+        Change la couleur du point en argument si la souris est par dessus
+        """
         if self.pos[0] - 13 < abscisse_souris() < self.pos[0] + 13 and self.pos[1] - 13 < ordonnee_souris() < self.pos[1] + 13:
             self.color = 'red'
             self.update()
@@ -43,6 +58,9 @@ class Point:
             return False
 
 def update_points():
+    """
+    Update tous les points
+    """
     for position in Point.liste_objet:
         if position.mouse_over():
             position.color = 'red'
