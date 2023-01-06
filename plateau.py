@@ -31,13 +31,13 @@ def placer_pion(coords, joueur, plateau):
 
 
 
-def deplacer_pion(coords, nwcoords, plateau,type_plat):
+def deplacer_pion(coords, nwcoords, plateau,type_plat,tour):
     """
     Déplace un pion dans le plateau de jeu
     """
     x, y = coords
     x1, y1 = nwcoords
-    if plateau[x][y].state == '':
+    if plateau[x][y].state == '' and plateau[x1][y1] == tour:
        plateau[x][y].state, plateau[x1][y1].state = plateau[x1][y1].state,plateau[x][y].state
        return True
     else:
@@ -116,7 +116,7 @@ def point_adjacanet(type_plat,poin1,poin2):
     x,y = poin1
     u,v = poin2
     dist = (abs(x-u),abs(v-y))
-    if dist[0] > 1 or dist[1] > 1:
+    if dist[0] > 1 or dist[1] >1:
         return False
     if dist == (0,1):
         return True
