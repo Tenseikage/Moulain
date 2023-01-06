@@ -2,6 +2,7 @@ import fltk as tk
 from random import choice
 import affichage as aff
 import sys
+from point import Point
 
 
 
@@ -163,6 +164,17 @@ def game_background():
     tk.texte(730, 65, 'Noir', couleur='black', ancrage='nw', police='Helvetica', taille=20, tag='joueur')
     tk.texte(730, 30, 'Tour du joueur :', couleur='black', ancrage='nw', police='Helvetica', taille=24, tag='background') 
 
+
+def fin(gagnan):
+    tk.efface_tout()
+    Point.liste_objet = []
+    tk.rectangle(0, 0, 1000, 1000, '', '#00aa00', 2, 'background')
+    if gagnan == 'b':
+        gagnan = 'blanc'
+    else:
+        gagnan = 'noir'
+    present_text('Bravo!, les pions ' + gagnan +' ont gagné !',(500,300),100,100,40)
+    return menu()
 
 
 
