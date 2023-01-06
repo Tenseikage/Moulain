@@ -141,6 +141,7 @@ def main_jeu(plateau,nb_pion,type_plat):
                 deplace = not deplace
                 plateau[clic[0]][clic[1]].selected = True
                 deplace , plateau = attendre_deplacement_de_pion(deplace,plateau,selected,type_plat)
+                tour_joueur = switch_player(tour_joueur)
       
 
 def main():
