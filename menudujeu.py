@@ -167,7 +167,9 @@ def game_background():
     tk.rectangle(700, 0, 1000, 1000, '', '#cccccc', 2, 'background')
     tk.rectangle(0, 600, 1000, 1000, '', '#bbbbbb', 2, 'background')
     tk.texte(730, 65, 'Noir', couleur='black', ancrage='nw', police='Helvetica', taille=20, tag='joueur')
-    tk.texte(730, 30, 'Tour du joueur :', couleur='black', ancrage='nw', police='Helvetica', taille=24, tag='background') 
+    tk.texte(730, 30, 'Tour du joueur :', couleur='black', ancrage='nw', police='Helvetica', taille=24, tag='background')
+    tk.texte(20, 630, 'Phase :', couleur='black', ancrage='nw', police='Helvetica', taille=24, tag='background')
+    tk.texte(137, 630, 'placez vos pions', couleur='black', ancrage='nw', police='Helvetica', taille=24, tag='phase') 
 
 
 def fin(gagnan):
