@@ -166,7 +166,7 @@ def main_jeu(plateau,nb_pion,type_plat):
                         pion_b += -1
                     else:
                         pion_n += -1
-                    if verif_fin(pion_n,pion_b):
+                    if verif_fin(pion_n,pion_b,pion_n_dispo,pion_b_dispo):
                         main()
 
 
