@@ -20,9 +20,9 @@ def coup(coord_clic,joueur,plateau):
     plateau, coup_valide = plat.placer_pion(coord_clic, joueur, plateau)
     if coup_valide:
         nv_joueur = switch_player(joueur)
-        print('tour de', nv_joueur)
     else:
-        print('fils de pute mauvai truc')
+        tk.efface('info')
+        tk.texte(710, 530, 'mauvaise position', couleur='red', ancrage='nw', police='Helvetica', taille=24, tag='info')
         nv_joueur = joueur
     return plateau, coup_valide, nv_joueur
 
@@ -117,6 +117,7 @@ def main_jeu(plateau,nb_pion,type_plat):
 
         coord_clic = update_points() #detecte click gauche sur position de pions
         if coord_clic != None:
+            tk.efface('info')
             ancient_joueur = tour_joueur
             plateau, coup_valide, tour_joueur = coup(coord_clic,tour_joueur,plateau)
             #metre -1 au nombre de pion et switch tour joueur
@@ -139,7 +140,8 @@ def main_jeu(plateau,nb_pion,type_plat):
 
         if pion_n_dispo == 0 and pion_b_dispo == 0:
             phase = 'deplacement pion'
-
+            tk.efface('phase')
+            tk.texte(137, 630, 'deplacez vos pions', couleur='green', ancrage='nw', police='Helvetica', taille=22, tag='phase')
 
     while phase == 'deplacement pion':
         interaction_clavier()
@@ -147,6 +149,7 @@ def main_jeu(plateau,nb_pion,type_plat):
 
         clic = update_points()
         if clic != None and plateau[clic[0]][clic[1]].state == tour_joueur:
+            tk.efface('info')
             if not plat.verif_place(clic,plateau):
                 selected = clic
                 deplace = not deplace
@@ -155,6 +158,9 @@ def main_jeu(plateau,nb_pion,type_plat):
                 if deplace == False:
                     plateau[clic[0]][clic[1]].selected = False
                     clic = None
+                    tk.efface('info')
+                    tk.texte(710, 530, 'Choisissez une autre position', couleur='red', ancrage='nw', police='Helvetica', taille=11, tag='info')
+
                 ancient_joueur = tour_joueur
                 tour_joueur = switch_player(tour_joueur)
 
