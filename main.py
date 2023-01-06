@@ -53,7 +53,7 @@ def attendre_deplacement_de_pion(deplace,plateau,selected,type_plat):
 
             clic = update_points()
             if clic != None:
-                if plat.deplacer_pion(clic, selected, plateau,type_plat):
+                if plat.deplacer_pion(clic, selected, plateau):
                     plateau[clic[0]][clic[1]].selected = False
                     plateau[selected[0]][selected[1]].selected = False
                     deplace = not deplace
@@ -106,6 +106,8 @@ def main_jeu(plateau,nb_pion,type_plat):
     tour_joueur = 'n'
     pion_b_dispo = nb_pion
     pion_n_dispo = nb_pion
+    pion_n = 0
+    pion_b = 0
     nb_moulins = 0
     deplace = False
     while phase == 'placement pion':
@@ -119,12 +121,20 @@ def main_jeu(plateau,nb_pion,type_plat):
             #metre -1 au nombre de pion et switch tour joueur
             if coup_valide and ancient_joueur == 'n':
                 pion_n_dispo += -1
+                pion_n += 1
             elif coup_valide and ancient_joueur == 'b':
                 pion_b_dispo += -1
+                pion_b += 1
             nb_ancien_moulins = nb_moulins
             nb_moulins = plat.moulin(plateau,type_plat)
             if nb_moulins - nb_ancien_moulins > 0:
                 attendre_enlever_pion(plateau,tour_joueur)
+                if ancient_joueur == 'n':
+                    pion_b += -1
+                else:
+                    pion_n += -1
+                if verif_fin(pion_n,pion_b):
+                    main()
 
         if pion_n_dispo == 0 and pion_b_dispo == 0:
             phase = 'deplacement pion'
@@ -141,13 +151,26 @@ def main_jeu(plateau,nb_pion,type_plat):
                 deplace = not deplace
                 plateau[clic[0]][clic[1]].selected = True
                 deplace , plateau = attendre_deplacement_de_pion(deplace,plateau,selected,type_plat)
+                ancient_joueur = tour_joueur
                 tour_joueur = switch_player(tour_joueur)
-                
+
                 nb_ancien_moulins = nb_moulins
                 nb_moulins = plat.moulin(plateau,type_plat)
                 if nb_moulins - nb_ancien_moulins > 0:
                     attendre_enlever_pion(plateau,tour_joueur)
-      
+                    if ancient_joueur == 'n':
+                        pion_b += -1
+                    else:
+                        pion_n += -1
+                    if verif_fin(pion_n,pion_b):
+                        main()
+
+
+def verif_fin(nb_pion_n,nb_pion_b):
+    if nb_pion_n == 0:
+        return menu.fin('b')
+    if nb_pion_b == 0:
+        return menu.fin('n')
 
 def main():
     '''
