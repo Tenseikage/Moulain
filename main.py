@@ -171,9 +171,9 @@ def main_jeu(plateau,nb_pion,type_plat):
 
 
 def verif_fin(nb_pion_n,nb_pion_b,pion_n_dispo,pion_b_dispo):
-    if nb_pion_n < 3 and nb_pion_n == 0:
+    if nb_pion_n < 3 and pion_n_dispo == 0:
         return menu.fin('b')
-    if nb_pion_b < 3 and nb_pion_b == 0:
+    if nb_pion_b < 3 and pion_b_dispo == 0:
         return menu.fin('n')
 
 def main():
