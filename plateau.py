@@ -31,7 +31,7 @@ def placer_pion(coords, joueur, plateau):
 
 
 
-def deplacer_pion(coords, nwcoords, plateau,type_plat):
+def deplacer_pion(coords, nwcoords, plateau):
     """
     Déplace un pion dans le plateau de jeu
     """
