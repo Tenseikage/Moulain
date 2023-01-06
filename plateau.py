@@ -30,6 +30,8 @@ def placer_pion(coords, joueur, plateau):
         return (plateau,False)
 
 def point_adjacent(type_plat,poin1,poin2):
+    if type_plat == 4:
+        return True
     adj_memm_carre = {
         0:(1,3),
         1:(0,2),
@@ -55,14 +57,14 @@ def point_adjacent(type_plat,poin1,poin2):
 
 print(point_adjacent(2,(1,1),(0,2)))
 
-def deplacer_pion(coords, nwcoords, plateau,type_plat):
+def deplacer_pion(coords, nwcoords, plateau,type_plat,pion_n,pion_b,tour_joueur):
     """
     Déplace un pion dans le plateau de jeu
     """
-    if type_plat == 4:
-        return True
-    if not point_adjacent(type_plat,coords,nwcoords):
-        return False
+    if not(tour_joueur == 'b' and pion_b == 3) or not(tour_joueur == 'n' and pion_n == 3):
+        if not point_adjacent(type_plat,coords,nwcoords):
+            return False
+    
     x, y = coords
     x1, y1 = nwcoords
     if plateau[x][y].state == '':
