@@ -46,14 +46,14 @@ def attendre_enlever_pion(plateau,joueur_a_enlever_pion):
                 pion_adverse_non_enleve = False
     tk.efface('pion_remove')
 
-def attendre_deplacement_de_pion(deplace,plateau,selected,type_plat):
+def attendre_deplacement_de_pion(deplace,plateau,selected,type_plat,pion_n,pion_b,tour_joueur):
     while deplace:
             interaction_clavier()
             tk.mise_a_jour()
 
             clic = update_points()
             if clic != None:
-                if plat.deplacer_pion(clic, selected, plateau,type_plat):
+                if plat.deplacer_pion(clic, selected, plateau,type_plat,pion_n,pion_b,tour_joueur):
                     plateau[clic[0]][clic[1]].selected = False
                     plateau[selected[0]][selected[1]].selected = False
                     deplace = not deplace
@@ -134,7 +134,7 @@ def main_jeu(plateau,nb_pion,type_plat):
                     pion_b += -1
                 else:
                     pion_n += -1
-                if verif_fin(pion_n,pion_b):
+                if verif_fin(pion_n,pion_b,pion_n_dispo,pion_b_dispo):
                     main()
 
         if pion_n_dispo == 0 and pion_b_dispo == 0:
@@ -151,7 +151,7 @@ def main_jeu(plateau,nb_pion,type_plat):
                 selected = clic
                 deplace = not deplace
                 plateau[clic[0]][clic[1]].selected = True
-                deplace , plateau = attendre_deplacement_de_pion(deplace,plateau,selected,type_plat)
+                deplace , plateau = attendre_deplacement_de_pion(deplace,plateau,selected,type_plat,pion_n,pion_b,tour_joueur)
                 if deplace == False:
                     plateau[clic[0]][clic[1]].selected = False
                     clic = None
@@ -170,10 +170,10 @@ def main_jeu(plateau,nb_pion,type_plat):
                         main()
 
 
-def verif_fin(nb_pion_n,nb_pion_b):
-    if nb_pion_n == 0:
+def verif_fin(nb_pion_n,nb_pion_b,pion_n_dispo,pion_b_dispo):
+    if nb_pion_n < 3 and nb_pion_n == 0:
         return menu.fin('b')
-    if nb_pion_b == 0:
+    if nb_pion_b < 3 and nb_pion_b == 0:
         return menu.fin('n')
 
 def main():
