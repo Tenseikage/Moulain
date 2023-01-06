@@ -142,6 +142,11 @@ def main_jeu(plateau,nb_pion,type_plat):
                 plateau[clic[0]][clic[1]].selected = True
                 deplace , plateau = attendre_deplacement_de_pion(deplace,plateau,selected,type_plat)
                 tour_joueur = switch_player(tour_joueur)
+                
+                nb_ancien_moulins = nb_moulins
+                nb_moulins = plat.moulin(plateau,type_plat)
+                if nb_moulins - nb_ancien_moulins > 0:
+                    attendre_enlever_pion(plateau,tour_joueur)
       
 
 def main():
