@@ -31,13 +31,13 @@ def placer_pion(coords, joueur, plateau):
 
 
 
-def deplacer_pion(coords, nwcoords, plateau,type_plat,tour):
+def deplacer_pion(coords, nwcoords, plateau,type_plat):
     """
     Déplace un pion dans le plateau de jeu
     """
     x, y = coords
     x1, y1 = nwcoords
-    if plateau[x][y].state == '' and plateau[x1][y1] == tour:
+    if plateau[x][y].state == '':
        plateau[x][y].state, plateau[x1][y1].state = plateau[x1][y1].state,plateau[x][y].state
        return True
     else:
