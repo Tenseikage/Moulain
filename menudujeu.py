@@ -1,5 +1,5 @@
 import fltk as tk
-from random import choice
+from random import choice, randint
 import affichage as aff
 import sys
 from point import Point
@@ -146,7 +146,11 @@ def presentation(centre,taille_x,taille_y): # centre : position centrale du rect
     colors = ['blue','yellow' , 'pink', 'purple','cyan']
     tk.rectangle(centre[0]-taille_x,centre[1]-taille_y,centre[0]+taille_x,centre[1]+taille_y,couleur= choice(colors), remplissage = choice(colors) ,
     	      tag = 'Rectangle')
-    present_text('Jeu du moulin ', (500, 200), 300, 100,60)
+    present_text('Jeu du moulin  ', (500, 200), 300, 100,60)
+    present_text('(version oreo)',(500,300),200,135,20)
+    tk.image(200,228,'images_jeu/oreo_n.png')
+    tk.image(785,206,'images_jeu/oreo_b.png')
+    
 
 
 def present_text(string,centre,taille_x,taille_y,police):
