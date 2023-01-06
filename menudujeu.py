@@ -111,7 +111,8 @@ def menu2():
         buttonred.append(button)
         plat = aff.Plateau((140+240*i,500), 28, i+1, True)
         plat.affiche_animation()
-        present_text(f'Variante à \n {variante[i]} pions', (150+240*i, 650), 200, 100,20)                         
+        present_text(f'Variante à \n {variante[i]} pions', (150+240*i, 650), 200, 100,20)
+    present_text(f'(Saut quelconque)', (150+240*3, 720), 200, 100,20)                         
     tk.mise_a_jour()
     choosing_event = True
     while choosing_event:
