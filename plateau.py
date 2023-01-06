@@ -29,12 +29,40 @@ def placer_pion(coords, joueur, plateau):
     else:
         return (plateau,False)
 
+def point_adjacent(type_plat,poin1,poin2):
+    adj_memm_carre = {
+        0:(1,3),
+        1:(0,2),
+        2:(1,4),
+        3:(0,5),
+        4:(2,7),
+        5:(3,6),
+        6:(5,7),
+        7:(6,4)
+    }
+    x,y = poin1
+    u,v = poin2
+    if abs(x-u) == 2:
+        return False
+    if x-u == 0 and v in adj_memm_carre[y]:
+        return True
+    if abs(x-u) == 1:
+        if type_plat == 2 and y == v:
+            return True
+        else:
+            return (y in (1,3,4,6) and y==v)
+    return False
 
+print(point_adjacent(2,(1,1),(0,2)))
 
-def deplacer_pion(coords, nwcoords, plateau):
+def deplacer_pion(coords, nwcoords, plateau,type_plat):
     """
     Déplace un pion dans le plateau de jeu
     """
+    if type_plat == 4:
+        return True
+    if not point_adjacent(type_plat,coords,nwcoords):
+        return False
     x, y = coords
     x1, y1 = nwcoords
     if plateau[x][y].state == '':
@@ -112,16 +140,8 @@ def moulin_variante_4(plateau):
         moulin += 1
     return moulin
 
-def point_adjacanet(type_plat,poin1,poin2):
-    x,y = poin1
-    u,v = poin2
-    dist = (abs(x-u),abs(v-y))
-    if dist[0] > 1 or dist[1] >1:
-        return False
-    if dist == (0,1):
-        return True
-    if dist == (1,1) and (type_plat == 2 or type_plat == 4):
-        return True
+
+
 
 
 
