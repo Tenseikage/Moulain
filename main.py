@@ -53,12 +53,13 @@ def attendre_deplacement_de_pion(deplace,plateau,selected,type_plat):
 
             clic = update_points()
             if clic != None:
-                if plat.deplacer_pion(clic, selected, plateau):
+                if plat.deplacer_pion(clic, selected, plateau,type_plat):
                     plateau[clic[0]][clic[1]].selected = False
                     plateau[selected[0]][selected[1]].selected = False
                     deplace = not deplace
                 else:
                     clic = None
+                    return False,plateau        
     return deplace, plateau      
 
 
@@ -151,6 +152,9 @@ def main_jeu(plateau,nb_pion,type_plat):
                 deplace = not deplace
                 plateau[clic[0]][clic[1]].selected = True
                 deplace , plateau = attendre_deplacement_de_pion(deplace,plateau,selected,type_plat)
+                if deplace == False:
+                    plateau[clic[0]][clic[1]].selected = False
+                    clic = None
                 ancient_joueur = tour_joueur
                 tour_joueur = switch_player(tour_joueur)
 
