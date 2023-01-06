@@ -46,6 +46,21 @@ def attendre_enlever_pion(plateau,joueur_a_enlever_pion):
                 pion_adverse_non_enleve = False
     tk.efface('pion_remove')
 
+def attendre_deplacement_de_pion(deplace,plateau,selected,type_plat):
+    while deplace:
+            interaction_clavier()
+            tk.mise_a_jour()
+
+            clic = update_points()
+            if clic != None:
+                if plat.deplacer_pion(clic, selected, plateau,type_plat):
+                    plateau[clic[0]][clic[1]].selected = False
+                    plateau[selected[0]][selected[1]].selected = False
+                    deplace = not deplace
+                else:
+                    clic = None
+    return deplace, plateau      
+
 
 def interaction_clavier():
     '''
@@ -115,7 +130,6 @@ def main_jeu(plateau,nb_pion,type_plat):
             nb_moulins = plat.moulin(plateau,type_plat)
             if nb_moulins - nb_ancien_moulins > 0:
                 attendre_enlever_pion(plateau,tour_joueur)
-                print('enleve un pion de :',tour_joueur)
 
         if pion_n_dispo == 0 and pion_b_dispo == 0:
             phase = 'deplacement pion'
@@ -137,20 +151,8 @@ def main_jeu(plateau,nb_pion,type_plat):
                 selected = clic
                 deplace = not deplace
                 plateau[clic[0]][clic[1]].selected = True
-        while deplace:
-            interaction_clavier()
-            tk.mise_a_jour()
-
-            clic = update_points()
-            if clic != None:
-                if plat.deplacer_pion(clic, selected, plateau,type_plat):
-                    plateau[clic[0]][clic[1]].selected = False
-                    plateau[selected[0]][selected[1]].selected = False
-                    deplace = not deplace
-                else:
-                    clic = None
-                    print(clic,selected)
-            
+                deplace , plateau = attendre_deplacement_de_pion(deplace,plateau,selected,type_plat)
+      
 
 def main():
     '''
