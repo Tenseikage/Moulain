@@ -79,12 +79,7 @@ def initialisation_jeu(type_plat):
     ainsi que cree les
     variable du nombre de pions
     '''
-    tk.rectangle(0, 0, 1000, 1000, '','#999999', 0, 'background')
-    tk.rectangle(700, 0, 1000, 1000, '', '#cccccc', 2, 'background')
-    tk.rectangle(0, 600, 1000, 1000, '', '#bbbbbb', 2, 'background')
-    tk.texte(730, 65, 'Noir', couleur='black', ancrage='nw', police='Helvetica', taille=20, tag='joueur')
-
-    tk.texte(730, 30, 'Tour du joueur :', couleur='black', ancrage='nw', police='Helvetica', taille=24, tag='background')
+    menu.game_background()
 
     plate = Plateau((350,300),80,type_plat,False)
     plate.affiche_animation()
@@ -133,12 +128,6 @@ def main_jeu(plateau,nb_pion,type_plat):
 
         if pion_n_dispo == 0 and pion_b_dispo == 0:
             phase = 'deplacement pion'
-
-
-
-
-
-
 
 
     while phase == 'deplacement pion':
