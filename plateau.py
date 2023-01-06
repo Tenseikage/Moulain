@@ -55,23 +55,26 @@ def point_adjacent(type_plat,poin1,poin2):
             return (y in (1,3,4,6) and y==v)
     return False
 
-print(point_adjacent(2,(1,1),(0,2)))
 
 def deplacer_pion(coords, nwcoords, plateau,type_plat,pion_n,pion_b,tour_joueur):
     """
     Déplace un pion dans le plateau de jeu
     """
-    if not(tour_joueur == 'b' and pion_b == 3) or not(tour_joueur == 'n' and pion_n == 3):
-        if not point_adjacent(type_plat,coords,nwcoords):
-            return False
+    adj = True
+    if not point_adjacent(type_plat,coords,nwcoords):
+        adj = False
     
-    x, y = coords
-    x1, y1 = nwcoords
-    if plateau[x][y].state == '':
-       plateau[x][y].state, plateau[x1][y1].state = plateau[x1][y1].state,plateau[x][y].state
-       return True
-    else:
-        return False
+    if (tour_joueur == 'b' and pion_b == 3) or (tour_joueur == 'n' and pion_n == 3):
+        adj = True
+
+    if adj:
+        x, y = coords
+        x1, y1 = nwcoords
+        if plateau[x][y].state == '':
+            plateau[x][y].state, plateau[x1][y1].state = plateau[x1][y1].state,plateau[x][y].state
+            return True
+
+    return False
 
 
 def enlever_pion(coords, plateau):
