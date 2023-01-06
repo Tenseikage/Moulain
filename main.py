@@ -135,7 +135,7 @@ def main_jeu(plateau,nb_pion,type_plat):
         tk.mise_a_jour()
 
         clic = update_points()
-        if clic != None:
+        if clic != None and plateau[clic[0]][clic[1]].state == tour_joueur:
             if not plat.verif_place(clic,plateau):
                 selected = clic
                 deplace = not deplace
