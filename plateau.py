@@ -77,7 +77,6 @@ def moulin_joueur(plateau,joueur,type_plat):
     moulin = 0
     for carre in plateau:
         moulin = moulin + moulin_dans_un_carre(carre,joueur)
-        #(1,3,4,6):
     if len(plateau) == 3:
         for i in (1, 3, 4, 6):
             if plateau[0][i].state == plateau[1][i].state == plateau[2][i].state == joueur:
@@ -112,6 +111,19 @@ def moulin_variante_4(plateau):
     if plateau[0][2].state == plateau[1][1].state == plateau[2][0].state != '':
         moulin += 1
     return moulin
+
+def point_adjacanet(type_plat,poin1,poin2):
+    x,y = poin1
+    u,v = poin2
+    dist = (abs(x-u),abs(v-y))
+    if dist[0] > 1 or dist[1] > 1:
+        return False
+    if dist == (0,1):
+        return True
+    if dist == (1,1) and (type_plat == 2 or type_plat == 4):
+        return True
+
+
 
 
 
